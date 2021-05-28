@@ -53,8 +53,8 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
         event.preventDefault(); //förhindrar uppdatering av sidan
         
         axios.post("http://localhost:1337/bookings", { //Fixa så att man kan hämta en user-booking
-            user_id:{userId},
-            helper_id:{helperId}
+            user_id:userId,
+            helper_id:helperId
 
             }).then ( (res)=> {
             console.log(res.data)

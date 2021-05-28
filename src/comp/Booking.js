@@ -1,9 +1,8 @@
 import React from 'react';
 
-function Booking( {helperId, firstName, lastName, description, image, language, dateTime} ) {
+function Booking( {helperId, firstName, lastName, dateTime} ) {
     return (
-        <div>
-            {image}
+        <div className = "card" key = { helperId } >
             <p>Helper: {firstName} {lastName}</p>
             <p>Time booked: {dateTime}</p>
         </div>

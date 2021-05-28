@@ -10,16 +10,18 @@ function BookingList() {
     
     useEffect( ()=> { //callback
 
-        console.log(userId);
 
         const fetchData = async ()=> { //hämta data från API
-            const response = await axios.get(`http://localhost:1337/bookings?users_permissions_user.id=${userId}`)
+            const response = await axios.get(`http://localhost:1337/bookings?user_id.id=${userId}`)
             // ,{
             //     headers: {
             //         Authorization: `Bearer ${token}`,
             //     }
             // })
             setBookings(response.data)
+
+            console.log(response.data);
+
         }
     
         fetchData();
@@ -42,10 +44,10 @@ function BookingList() {
                         <Booking key  =   { booking.id } 
                         helperId   =   { booking.id } 
                         email      =   { booking.email }  
-                        firstName  =   { booking.first_name }
-                        lastName   =   { booking.last_name }  
+                        firstName  =   { booking.helper_id.first_name }
+                        lastName   =   { booking.helper_id.last_name }  
                         language   =   { booking.language } 
-                        dateTime   =   { booking.date_time }
+                        dateTime   =   { booking.helper_id.date_time }
                      />
                     )
                 })
@@ -58,15 +60,17 @@ function BookingList() {
             {/* Har man blivit bokad?  */}
             {/* amiBooked ?  */}
             <p>No one have asked for your help (yet!)</p>
+            
+            {/* : */}
 
             { bookings.map ( (booking)=> { //listar ut alla bookningar
                     
-                    return (
+                    return ( //är det här man kopplar?
                         <Booking key  =   { booking.id } 
                         userId      =   { booking.user_id } 
                         email       =   { booking.email }  
-                        firstName   =   { booking.first_name }
-                        lastName    =   { booking.last_name }  
+                        firstName   =   { booking.user_id.first_name }
+                        lastName    =   { booking.user_id.last_name }  
                         language    =   { booking.language } 
                         dateTime    =   { booking.date_time }
                      />
