@@ -14,21 +14,35 @@ h1 {
   color: rgb(25, 180, 231);
 }
 
+h2 {
+  padding-bottom: 1rem;
+}
+
 h4 {
   color: green;
 }
 
+h5 {
+  color:red;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: grey;
+}
+
 .navbar {
-  padding:20px;
+  padding:20px 10px 0px;
   display: flex;
   align-items: center;
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
   border-bottom: 1px solid lightgrey;
 }
 
 .navbar .links {
-  margin-left:auto;
+  margin-left: auto;
 }
 
 .navbar a {
@@ -54,11 +68,16 @@ h4 {
 .card {
   border: 1px solid black;
   padding:30px;
-  width: 200px;
+  margin:30px;
+  width: auto;
 }
 
 image {
   width: 20px;
+}
+
+hr {
+  margin-bottom: 5%;
 }
 
 button {
@@ -66,21 +85,36 @@ button {
   background-color: white;
   padding: 10px;
   cursor:pointer;
-  margin-bottom: 10px;
+  font-size: 1em;
+  font-family: 'Quicksand', sans-serif;
+
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
 }
 
 input {
+  border:1px solid black;
   font-family: Arial, Helvetica, sans-serif;
   border-top:0px;
   border-left:0px;
   border-right:0px;
   border-bottom: 1px solid grey;
-  width: 400px;
+  width: auto;
   padding:10px;
   margin:20px 0px;
 }
 
+.email {
+  padding: 2px;;
+  width: 90%;
+  margin-top:0;
+}
+
 ::placeholder {
-  color:lightgray;
+  color:rgb(187, 187, 187);
 }
 

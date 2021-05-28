@@ -1,43 +1,30 @@
-import Card from './Card';
+import { useState } from 'react';
+import CardList from './CardList';
 
-const Home = () => {
+function Home(){
 
-    let name = 'Pedro Rivera';
-    let desc = 'A calm student that has a very effective approach to programming.';
-    let languages = 'Javascript, React'
-    let time10 = '10.00';
-
-
-
-    const handleClick = () => {
-        console.log('Booked!')
-    }
-
-    // const handleRemove = () => {
-    //     console.log('Removed!')
-    // }
-
-    // const handleUpdate = () => {
-    //     console.log('Updated!')
-    // }
-
-    
     return ( 
-        <div className = "home">
-            
+
+        
+        <div className = "main">
+
             <div className="intro-title">
-                <h2>Welcome to Web Studdy Buddy</h2>
+                <h2>Welcome to Web Study Buddy!</h2>
                 <p className="intro">
-                Here you can book a student that also studies web development in Medieinstitutet. Choose a student that is available, choose a time and await your booked time! Remeber, one booked time is ~60 min! </p>
+                Here you can book a student as a helper that also studies web development in Medieinstitutet. Choose a student that is available, submit your email and await your booked time! </p>
                 <p>Happy studying!</p>
             </div>
-            
-            <Card />
+
+            <h2>All Helpers</h2>
+            <hr />
+
+            <CardList />
 
         </div>
 
-        
-     );
+    );
+
 }
+
  
 export default Home;
