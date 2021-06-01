@@ -42,12 +42,14 @@ function BookingList() {
                     
                     return (
                         <Booking key  =   { booking.id } 
-                        helperId   =   { booking.id } 
-                        email      =   { booking.email }  
-                        firstName  =   { booking.helper_id.first_name }
-                        lastName   =   { booking.helper_id.last_name }  
-                        language   =   { booking.language } 
-                        dateTime   =   { booking.helper_id.date_time }
+                        helperId    =   { booking.id } 
+                        email       =   { booking.email }  
+                        firstName   =   { booking.helper_id.first_name }
+                        lastName    =   { booking.helper_id.last_name }  
+                        language    =   { booking.language } 
+                        dateTime    =   { booking.helper_id.date_time }
+                        price       =   { booking.helper_id.price }
+
                      />
                     )
                 })
@@ -73,6 +75,8 @@ function BookingList() {
                         lastName    =   { booking.user_id.last_name }  
                         language    =   { booking.language } 
                         dateTime    =   { booking.date_time }
+                        price    =   { booking.price }
+
                      />
                     )
                 })

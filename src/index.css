@@ -35,21 +35,32 @@ a {
 .navbar {
   padding:20px 10px 0px;
   display: flex;
-  align-items: center;
   max-width: 800px;
   margin: 0 auto;
   border-bottom: 1px solid lightgrey;
+
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 800px){
+  .navbar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-left:16px;
+  }
+
 }
 
 .navbar .links {
-  margin-left: auto;
+  margin: auto 0px auto  auto;
 }
 
 .navbar a {
-  margin-left: 16px;
   text-decoration: none;
   padding: 6px;
   color: grey;
+  padding-right:16px;
 }
 
 .navbar a:hover {

@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import Modal from "react-modal";
 import axios from "axios";
+import dateFormat from 'dateformat';
 
-function Card ( { helperId, firstName, lastName, description, image, language, dateTime } ){ 
+function Card ( { helperId, firstName, lastName, description, image, language, dateTime, price } ){ 
 
     const customStyles = {
         content : {
@@ -75,7 +76,7 @@ function deleteCard() {
 }
 
 return (
-        <>
+    <>
         <div className = "card" key = { helperId } >
             <div><img src={`http://localhost:1337${image}`} alt=""/></div>
             <h3>{ firstName } { lastName }</h3>
@@ -83,9 +84,14 @@ return (
             <p><b> Languages/framework </b></p>
             <p>{ language }</p>
 
-            <p><b> Time available</b></p>
-            <p>{dateTime}</p>
-            {/* dateTime.toString funkade inte */}
+            <p><b> Date & time available</b></p>
+            <p>{dateFormat(dateTime, "DDDD, dd mmm yyyy, HH.MM")}</p>
+            {/* <p>{parseInt(dateTime, 10)}</p> */}
+            {/* <p>{dateTime.replace(/^0+/, '')}</p> */}
+            {/* dateTime.toString - funkade inte */}
+
+            <p><b> Price </b></p>
+            <p>{ price } SEK</p>
 
             <button onClick = { openModal }> 
                 Book
@@ -123,8 +129,10 @@ return (
             Close
             </button>
         </form>
+        
         </Modal>
-        </>
+
+    </>
     )
 }
  

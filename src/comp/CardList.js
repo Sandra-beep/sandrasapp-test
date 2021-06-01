@@ -34,6 +34,8 @@ const CardList = ()=> {
                      description=   { helper.description }
                      language   =   { helper.language } 
                      dateTime   =   { helper.date_time }
+                     price      =   { helper.price }
+
                      />
                  )
             }) 

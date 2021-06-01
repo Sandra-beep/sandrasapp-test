@@ -6,13 +6,15 @@ const isAdmin = true;
 
 const Create = ()=> {
     const initialValues = {
-        first_name:"", // ska hämtas upp auto från databasen
-        last_name:"", // ska hämtas upp från databasen
-        email:"", // ska hämtas upp från databasen
+        first_name:"", // hämtas auto från databasen
+        last_name:"", // hämtas auto från databasen
+        email:"", // hämtas auto från databasen
         description:"",
         language:"", //? Jag tagit bort checkboxes
-        profile_image:"", //?
-        date_time: "" //?
+        profile_image:"",
+        date_time: "",
+        price: null
+
     }
 
     const [formValues, setFormValules] = useState(initialValues);
@@ -60,11 +62,12 @@ const Create = ()=> {
             description:formValues.description,
             language:formValues.language,
             profile_image:formValues.profile_image,
-            date_time:formValues.date_time
+            date_time:formValues.date_time,
+            price:formValues.price
 
         })
         
-        .then ( (response) => {
+        .then ( (response) => { //kod för att hantera bilden
             const data = new FormData();
             data.append("files", fileData)
             data.append("ref", "helpers") //vilken collection bilden tillhör
@@ -140,6 +143,14 @@ const Create = ()=> {
                 placeholder = "Write languages, ex. Javascript, PHP, CSS2, HTML5"
                 value = {formValues.language}
                 name = "language"
+                onChange = { onHandleChange }
+                required
+                />
+
+                <input type="number"
+                placeholder = "Choose price"
+                value = {formValues.price}
+                name = "price"
                 onChange = { onHandleChange }
                 required
                 />
