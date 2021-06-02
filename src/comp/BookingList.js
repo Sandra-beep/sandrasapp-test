@@ -75,7 +75,7 @@ function BookingList() {
                         lastName    =   { booking.user_id.last_name }  
                         language    =   { booking.language } 
                         dateTime    =   { booking.date_time }
-                        price    =   { booking.price }
+                        price    =   { booking.helper_id.price }
 
                      />
                     )

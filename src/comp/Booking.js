@@ -35,9 +35,9 @@ function Booking( {helperId, firstName, lastName, dateTime, price} ) {
 
     return (
         <div className = "card" key = { helperId } >
-            <p>Helper: {firstName} {lastName}</p>
-            <p>Time booked: {dateFormat(dateTime, "DDDD, dd mmm yyyy, HH.MM")}</p>
-            <p>Price: {price} SEK</p>
+            <p><b>Student:</b> {firstName} {lastName}</p>
+            <p><b>Time booked:</b> {dateFormat(dateTime, "DDDD, dd mmm yyyy, HH.MM")}</p>
+            <p><b>Price:</b> {price} SEK</p>
 
             
             <button role="link" onClick = { handleClick }>

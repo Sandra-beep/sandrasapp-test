@@ -35,20 +35,9 @@ a {
 .navbar {
   padding:20px 10px 0px;
   display: flex;
-  max-width: 800px;
+  max-width: 80%;
   margin: 0 auto;
   border-bottom: 1px solid lightgrey;
-
-}
-
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 800px){
-  .navbar {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding-left:16px;
-  }
 
 }
 
@@ -60,7 +49,7 @@ a {
   text-decoration: none;
   padding: 6px;
   color: grey;
-  padding-right:16px;
+  padding:10px;
 }
 
 .navbar a:hover {
@@ -69,22 +58,32 @@ a {
 }
 
 .content {
-  max-width: 600px;
+  max-width: 70%;
   margin: 40px auto;
   padding:20px;
+  display: flex;
 }
+
 .intro-title {
   margin-bottom: 75px;
 }
+
 .card {
-  border: 1px solid black;
+  border: 1px solid darkgrey;
   padding:30px;
   margin:30px;
   width: auto;
 }
 
-image {
-  width: 20px;
+.profile {
+  width: auto;
+  display: flex;
+}
+.profile-image {
+  width: 14rem;
+}
+.profile-desc {
+  width: auto;
 }
 
 hr {
@@ -98,8 +97,13 @@ button {
   cursor:pointer;
   font-size: 1em;
   font-family: 'Quicksand', sans-serif;
-
+  margin:10px auto;
+  width: 100%;
 }
+
+/* button a:hover {
+  background-color: grey;
+} */
 
 form {
   display: flex;
@@ -127,5 +131,20 @@ input {
 
 ::placeholder {
   color:rgb(187, 187, 187);
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 700px){
+  .navbar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-left:16px;
+  }
+
+  .navbar .links {
+    margin: auto;
+  }
+
 }
 

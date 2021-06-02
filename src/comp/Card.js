@@ -78,21 +78,26 @@ function deleteCard() {
 return (
     <>
         <div className = "card" key = { helperId } >
-            <div><img src={`http://localhost:1337${image}`} alt=""/></div>
-            <h3>{ firstName } { lastName }</h3>
-            <p>{ description }</p>
-            <p><b> Languages/framework </b></p>
-            <p>{ language }</p>
+            
+            <div className = "profile">
+                <div className = "profile-image">
+                    <img src={`http://localhost:1337${image}`} alt=""/>
+                </div>
+                <div className = "profile-desc">
+                    <h3>{ firstName } { lastName }</h3>
+                    <p>{ description }</p>
+                    <p><b> Languages/framework: </b></p>
+                    <p>{ language }</p>
+                </div>
+            </div>
+            <hr />
 
-            <p><b> Date & time available</b></p>
-            <p>{dateFormat(dateTime, "DDDD, dd mmm yyyy, HH.MM")}</p>
-            {/* <p>{parseInt(dateTime, 10)}</p> */}
-            {/* <p>{dateTime.replace(/^0+/, '')}</p> */}
-            {/* dateTime.toString - funkade inte */}
+            <p><b> Date & time available: </b>
+            {dateFormat(dateTime, "DDDD, dd mmm yyyy, HH.MM")} o'clock</p>
 
-            <p><b> Price </b></p>
-            <p>{ price } SEK</p>
-
+            
+            <p><b> Price: </b>{ price } SEK</p>
+        
             <button onClick = { openModal }> 
                 Book
             </button>
@@ -104,6 +109,7 @@ return (
             <button onClick = { deleteCard }> 
                 Delete
             </button>
+        
 
         </div>
 
