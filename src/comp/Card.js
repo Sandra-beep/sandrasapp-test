@@ -9,7 +9,7 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
         content : {
           background: "lightgrey",
           height        :   "300px",
-          width         :   "250px",
+          width         :   "auto",
           top           :   '50%',
           left          :   '50%',
           right         :   'auto',
@@ -35,7 +35,7 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
     useEffect( ()=> { //läser från localstorage
         const userId = localStorage.getItem("userId") //redan på rad 28??
         setUserId(userId)
-    }, []) //[] empty dependency array, ser till att hooken bara kör funktionen efter första render
+    }, []) //[] empty dependency array, hook som kör funktionen 1 render
 
 
     function openModal(){
@@ -53,7 +53,7 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
     async function onHandleSubmit(event){
         event.preventDefault(); //förhindrar uppdatering av sidan
         
-        axios.post("http://localhost:1337/bookings", { //Fixa så att man kan hämta en user-booking
+        axios.post("http://localhost:1337/bookings", { //Fixar så att man kan hämta en user-booking
             user_id:userId,
             helper_id:helperId
 
@@ -62,15 +62,15 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
             openModal();
 
             }).catch ( (err) => {
-            console.log(err) //Vad är det för error den ska visa och vart?
-
+            console.log(err) 
             })
 }
 
-function deleteCard() {
-    axios.delete("http://localhost:1337/helpers/{helperId}", //behöver vara dynamiskt 
+function deleteCard() { //om man är inloggad så man genom sitt id på localstorage ta bort sig själv
+    axios.delete(`http://localhost:1337/helpers/:id`,
+    
     { headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${userId}`,
       } }
     )
 }
@@ -92,8 +92,8 @@ return (
             </div>
             <hr />
 
-            <p><b> Date & time available: </b>
-            {dateFormat(dateTime, "DDDD, dd mmm yyyy, HH.MM")} o'clock</p>
+            <p><b> Date & time available: </b></p>
+            <p>{dateFormat(dateTime, "DDDD, dd mmm yyyy, HH.MM")} o'clock</p>
 
             
             <p><b> Price: </b>{ price } SEK</p>
@@ -102,6 +102,7 @@ return (
                 Book
             </button>
 
+            {/* om man är admin eller har samma userid så ska man kunna ta bort en helper-card */}
             <button                     > 
                 Update
             </button>

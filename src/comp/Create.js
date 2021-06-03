@@ -8,9 +8,9 @@ const Create = ()=> {
     const initialValues = {
         first_name:"", // hämtas auto från databasen
         last_name:"", // hämtas auto från databasen
-        email:"", // hämtas auto från databasen
+        email:"", // hämtas auto från localstorage
         description:"",
-        language:"", //? Jag tagit bort checkboxes
+        language:"",
         profile_image:"",
         date_time: "",
         price: null

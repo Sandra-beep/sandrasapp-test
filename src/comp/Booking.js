@@ -44,6 +44,10 @@ function Booking( {helperId, firstName, lastName, dateTime, price} ) {
             <p>Checkout</p>
             </button>
 
+            <button > 
+                Cancel booking
+            </button>
+
         </div>
     );
 }

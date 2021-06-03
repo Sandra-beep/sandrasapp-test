@@ -30,6 +30,8 @@ function BookingList() {
     
     return ( 
         <>
+        <div className="bookinglist">
+
         <h2>My booked sessions</h2>
         <div className="list">
             <h3>My Helpers</h3>
@@ -81,8 +83,7 @@ function BookingList() {
                     )
                 })
             }
-
-            
+            </div>
         </div>
         </>
 
