@@ -7,7 +7,7 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
 
     const customStyles = {
         content : {
-          background: "lightgrey",
+          background: "lightblue",
           height        :   "300px",
           width         :   "auto",
           top           :   '50%',
@@ -22,14 +22,19 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
     const intialValues = {
        email:""
     }
+    const email_ls = localStorage.getItem("email");
+
 
     //Mina states
-    const [modalStatus, setModalStatus] = useState(false);
+    
+    const [isAdmin, setIsAdmin] = useState(false)
     const [formValues, setFormValues] = useState(intialValues);
     const [userId, setUserId] = useState(localStorage.getItem("userId"))
     const [token, setToken]= useState(localStorage.getItem("jwt"));
-    
-    const email_ls = localStorage.getItem("email");
+    const [modalStatus, setModalStatus] = useState(false);
+    const [deleteStatus, setDeleteStatus] = useState(false); //deleteisopen
+    const [editStatus, setEditStatus] = useState(false); //editisopen
+
 
 
     useEffect( ()=> { //läser från localstorage
@@ -44,6 +49,24 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
 
     function closeModal(){
         setModalStatus(false)
+    }
+
+    function openDeleteModal(e) {
+        setUserId(e.target.parentNode.previousSibling.previousSibling.previousSibling.innerHTML)
+        setDeleteStatus(true)
+    }
+    
+    function closeDeleteModal(){
+        setDeleteStatus(false);
+    }
+
+    function openEditModal(e) {
+        setUserId(e.target.parentNode.previousSibling.previousSibling.previousSibling.innerHTML)
+        setEditStatus(true)
+    }
+    
+    function closeEditModal(){
+        setEditStatus(false);
     }
 
     function onHandleChange(event){
@@ -64,13 +87,22 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
             }).catch ( (err) => {
             console.log(err) 
             })
-}
+    }
 
 function deleteCard() { //om man är inloggad så man genom sitt id på localstorage ta bort sig själv
-    axios.delete(`http://localhost:1337/helpers/:id`,
+    axios.delete(`http://localhost:1337/helpers/${helperId}`,
     
     { headers: {
-        Authorization: `Bearer ${userId}`,
+        Authorization: `Bearer ${token}`,
+      } }
+    )
+}
+
+function editCard() { //om man är inloggad så man genom sitt id på localstorage ta bort sig själv
+    axios.put(`http://localhost:1337/helpers/${helperId}`,
+    
+    { headers: {
+        Authorization: `Bearer ${token}`,
       } }
     )
 }
@@ -102,43 +134,74 @@ return (
                 Book
             </button>
 
-            {/* om man är admin eller har samma userid så ska man kunna ta bort en helper-card */}
-            <button                     > 
+            {/* isAdmin || userId == true ? */}
+            <button onClick = { openEditModal }> 
                 Update
             </button>
                                             
-            <button onClick = { deleteCard }> 
+            <button onClick = { openDeleteModal }> 
                 Delete
             </button>
         
 
         </div>
 
-        <Modal 
-        isOpen = {modalStatus}
-        onRequestClose = {closeModal}
-        style = {customStyles}
-        contentLabel = "Bekräftelse"
+        
+        {/* : */}
+        {/* <Modal
+          isOpen= { openDeleteModal }
+          onRequestClose={closeDeleteModal}
+          style={customStyles}
+          ariaHideApp={false}
+          contentLabel="Cancel Session"
         >
-       
-        <h3>Tack för din bokning!</h3>
-        <form onSubmit = { onHandleSubmit}>
-            <p>Det kommer en bekräftelse i mail:</p>
+        
+        <h2>Cancel Session</h2>
+          <h3>Do you want cancel booked study session? </h3>
+          <button className="" onClick={deleteCard}>Yes</button>
+          <button className="" onClick={closeDeleteModal}>No</button>
+        </Modal> */}
+
+
+        {/* <Modal
+          isOpen = { openEditModal }
+          onRequestClose = { closeEditModal }
+          style={customStyles}
+          ariaHideApp={false}
+          contentLabel="Edit Session"
+        >
+        <h2>Edit Session</h2>
+          <h3>Do you want to edit booked study session? </h3>
+          <button className="" onClick={editCard}>Yes</button>
+          <button className="" onClick={closeEditModal}>No</button>
+        </Modal> */}
+
+        
+        <Modal 
+        isOpen = { modalStatus }
+        onRequestClose = { closeModal }
+        style = {customStyles}
+        ariaHideApp={false}
+        contentLabel = "Confirmation"
+        >
+            
+        <h3>Thanks for your booking!</h3>
+        <form onSubmit = { onHandleSubmit }>
+            <p>Confirmation to email:</p>
             {/* email ska komma auto från API*/}
             <input type="text" name="email" value={ email_ls } />
             
             {/* Behöver en useState som ändrar läge confirm till confirmed! i modalen */}
-            {<button type="submit">
+            {<button type="submit" >
             Confirm
             </button> }
             
-            <button onClick = {closeModal}>
+            <button onClick = { closeModal }>
             Close
             </button>
         </form>
         
         </Modal>
-
     </>
     )
 }

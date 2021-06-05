@@ -32,11 +32,17 @@ a {
   color: grey;
 }
 
+hr {
+  margin-bottom: 5%;
+  width: 100%;
+}
+
+/* Navbar */
 .navbar {
   padding:20px 10px 0px;
   display: flex;
-  max-width: 80%;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0px 5vw;
   border-bottom: 1px solid lightgrey;
 
 }
@@ -57,30 +63,29 @@ a {
   background-color: rgb(25, 180, 231);
 }
 
+/* Main */
 .content {
-  max-width: 70%;
-  margin: 40px auto;
-  padding:20px;
+  border:lightcoral solid 3px;
+  width: 100%;
+  margin: 2vw;
+  padding:4vw;
   display: flex;
+  justify-content: center;
 }
 
 .intro-title {
   margin-bottom: 75px;
 }
 
+
+/* Själva innehållet på en card */
 .card {
   border: 1px solid darkgrey;
   padding:30px;
   margin:30px;
-  width: auto;
+  min-width: 50vw;
 }
 
-.bookinglist {
-  border: 1px solid lightgray;
-  padding:30px;
-  margin:30px;
-  width: 600px;
-}
 
 .profile {
   width: auto;
@@ -93,12 +98,18 @@ a {
 }
 .profile-desc {
   width: auto;
+  padding-left:20px;
 }
 
-hr {
-  margin-bottom: 5%;
+.bookinglist {
+  border: 1px solid lightgray;
+  padding:30px;
+  margin:30px;
+  width: 600px;
 }
 
+
+/* Button */
 button {
   border:grey 1px solid;
   background-color: white;
@@ -120,6 +131,7 @@ form {
   flex-flow: column wrap;
 }
 
+
 .login-card{
   border:1px solid lightgray;
   padding: 10%;
@@ -132,7 +144,7 @@ input {
   border-left:0px;
   border-right:0px;
   border-bottom: 1px solid grey;
-  min-width: 350px;
+  width: auto;
   padding:10px;
   margin:20px 0px;
 }
@@ -147,18 +159,24 @@ input {
   color:rgb(187, 187, 187);
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 700px){
+@media only screen and (max-width: 800px){
   .navbar {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     padding-left:16px;
+    border:3px solid green;
+    width: 105vw;
+    margin:0px;
   }
 
   .navbar .links {
+    width: 100%;
     margin: auto;
+    display: flex;
+    justify-content: center;
   }
+
 
 }
 
