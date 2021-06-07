@@ -74,14 +74,15 @@ hr {
 
 .intro-title {
   margin-bottom: 75px;
+  width: 70vw;
 }
 
 
 /* Själva innehållet på en card */
 .card {
   border: 1px solid darkgrey;
-  padding:30px;
-  margin:30px;
+  padding:3vw;
+  margin:3vw;
   min-width: 50vw;
 }
 
@@ -158,13 +159,13 @@ input {
   color:rgb(187, 187, 187);
 }
 
+/* BREAKPOINTS */
 @media only screen and (max-width: 800px){
   .navbar {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     padding-left:16px;
-    border:3px solid green;
     width: 105vw;
     margin:0px;
   }
@@ -176,6 +177,15 @@ input {
     justify-content: center;
   }
 
-
 }
 
+@media only screen and (max-width: 470px)
+
+{.navbar .links {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
+
+}}

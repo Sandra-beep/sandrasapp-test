@@ -170,6 +170,7 @@ return (
           ariaHideApp={false}
           contentLabel="Edit Session"
         >
+        
         <h2>Edit Session</h2>
           <h3>Do you want to edit booked study session? </h3>
           <button className="" onClick={editCard}>Yes</button>
