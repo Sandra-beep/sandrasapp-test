@@ -1,4 +1,3 @@
-//ska motsvara Rakibs Menu.js 
 import React from 'react';
 import { Link } from 'react-router-dom';
 

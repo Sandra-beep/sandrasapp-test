@@ -56,18 +56,19 @@ function handleOnSubmit(event) {
 return (
     <> 
     
-    {loggedIn ? (<div> Välkommen att logga in! </div>) : (
+    {loggedIn ? (<div> </div>) : (
     
     <div>
 
-    <h2> Signup </h2>
     
-    <form 
-    className="" 
+    <form
+    className="signup-card" 
     x-data="{password: '',password_confirm: ''}" 
     onSubmit = { handleOnSubmit }
     >
     
+    <h2> Signup </h2>
+
     <span className ="text">Username</span>
         <input className=""
         placeholder="" 
@@ -121,7 +122,7 @@ return (
         x-model="password_confirm"
         />
 
-        <div className="">
+        {/* <div className="">
             <input className="" type="checkbox"/>
                 <span className="">Accept the
                     <a href="#" className=""> 
@@ -142,7 +143,7 @@ return (
                 <a className="no-underline border-b border-grey-dark text-grey-dark" href="#">
                 Privacy Policy.
             </a>
-        </div>
+        </div> */}
             
         {/* Error meddelande */}
         <h5> { error } </h5>

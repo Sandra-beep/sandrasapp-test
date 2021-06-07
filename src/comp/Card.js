@@ -7,7 +7,7 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
 
     const customStyles = {
         content : {
-          background: "lightblue",
+          background: "lightgrey",
           height        :   "300px",
           width         :   "auto",
           top           :   '50%',
@@ -40,6 +40,7 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
     useEffect( ()=> { //läser från localstorage
         const userId = localStorage.getItem("userId") //redan på rad 28??
         setUserId(userId)
+  
     }, []) //[] empty dependency array, hook som kör funktionen 1 render
 
 
@@ -52,7 +53,7 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
     }
 
     function openDeleteModal(e) {
-        setUserId(e.target.parentNode.previousSibling.previousSibling.previousSibling.innerHTML)
+        // setUserId(e.target.parentNode.previousSibling.previousSibling.previousSibling.innerHTML)
         setDeleteStatus(true)
     }
     
@@ -61,7 +62,7 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
     }
 
     function openEditModal(e) {
-        setUserId(e.target.parentNode.previousSibling.previousSibling.previousSibling.innerHTML)
+        // setUserId(e.target.parentNode.previousSibling.previousSibling.previousSibling.innerHTML)
         setEditStatus(true)
     }
     
@@ -73,7 +74,7 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
         setFormValues({...formValues, [event.target.name] :  event.target.value})
     }
 
-    async function onHandleSubmit(event){
+    function onHandleSubmit(event){
         event.preventDefault(); //förhindrar uppdatering av sidan
         
         axios.post("http://localhost:1337/bookings", { //Fixar så att man kan hämta en user-booking
@@ -89,12 +90,16 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
             })
     }
 
-function deleteCard() { //om man är inloggad så man genom sitt id på localstorage ta bort sig själv
-    axios.delete(`http://localhost:1337/helpers/${helperId}`,
+async function deleteCard() { //om man är inloggad så man genom sitt id på localstorage ta bort sig själv
+    await axios.delete(`http://localhost:1337/helpers/${helperId}`,
     
     { headers: {
         Authorization: `Bearer ${token}`,
       } }
+    )
+    .then(
+        closeDeleteModal(),
+        window.location.reload()
     )
 }
 
@@ -148,34 +153,34 @@ return (
 
         
         {/* : */}
-        {/* <Modal
-          isOpen= { openDeleteModal }
+        <Modal
+          isOpen= { deleteStatus }
           onRequestClose={closeDeleteModal}
           style={customStyles}
           ariaHideApp={false}
-          contentLabel="Cancel Session"
+          contentLabel="Delete Card"
         >
         
-        <h2>Cancel Session</h2>
-          <h3>Do you want cancel booked study session? </h3>
+        <h2>Delete Card</h2>
+          <h3>Do you want delete this card?</h3>
           <button className="" onClick={deleteCard}>Yes</button>
           <button className="" onClick={closeDeleteModal}>No</button>
-        </Modal> */}
+        </Modal>
 
 
-        {/* <Modal
-          isOpen = { openEditModal }
+        <Modal
+          isOpen = { editStatus }
           onRequestClose = { closeEditModal }
           style={customStyles}
           ariaHideApp={false}
           contentLabel="Edit Session"
         >
-        
+
         <h2>Edit Session</h2>
           <h3>Do you want to edit booked study session? </h3>
           <button className="" onClick={editCard}>Yes</button>
           <button className="" onClick={closeEditModal}>No</button>
-        </Modal> */}
+        </Modal>
 
         
         <Modal 
@@ -189,7 +194,7 @@ return (
         <h3>Thanks for your booking!</h3>
         <form onSubmit = { onHandleSubmit }>
             <p>Confirmation to email:</p>
-            {/* email ska komma auto från API*/}
+            {/* email ska komma auto från API */}
             <input type="text" name="email" value={ email_ls } />
             
             {/* Behöver en useState som ändrar läge confirm till confirmed! i modalen */}

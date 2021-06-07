@@ -92,9 +92,9 @@ const Create = ()=> {
 
         { isAdmin && ( 
         
-            <form onSubmit = { onHandleSubmit } >
+            <form className="create-form" conSubmit = { onHandleSubmit } >
             
-                <div className="create">
+                <div className="">
                     <h2>I want to help out!</h2>
                     <p>Want to sign up as one of Santas Little Web Helpers?</p>
                     <p>Write your info below! All fields are mandatory!</p>
@@ -148,7 +148,7 @@ const Create = ()=> {
                 />
 
                 <input type="number"
-                placeholder = "Choose price"
+                placeholder = "A little sugar for the favor (SEK)"
                 value = {formValues.price}
                 name = "price"
                 onChange = { onHandleChange }

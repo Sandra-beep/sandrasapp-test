@@ -105,10 +105,10 @@ const Update = ()=> {
 
         { isAdmin && ( 
         
-            <form onSubmit = { onHandleSubmit } >
+            <form className="create-form" onSubmit = { onHandleSubmit } >
             
-                <div className="Update">
-                    <h2>Update information!</h2>
+                <div className="">
+                    <h2>Update helper-information!</h2>
                 </div>
             
                 <input type="text" 

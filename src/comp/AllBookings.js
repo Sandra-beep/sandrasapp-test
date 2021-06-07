@@ -2,11 +2,11 @@ import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import Booking from './Booking';
 
-function BookingList() {
+function AllBookings() {
 
     const [bookings, setBookings] = useState ([]);
     const [userId, setUserId] = useState(localStorage.getItem("userId"));
-    // const [token, setToken] = useState(localStorage.getItem("jwt"));
+    const [token, setToken] = useState(localStorage.getItem("jwt"));
     
     useEffect( ()=> { //callback
 
@@ -18,8 +18,8 @@ function BookingList() {
             //         Authorization: `Bearer ${token}`,
             //     }
             // })
-            setBookings(response.data);
-            setUserId(userId);
+            setBookings(response.data)
+
             console.log(response.data);
 
         }
@@ -34,10 +34,10 @@ function BookingList() {
 
         <h2>My booked sessions</h2>
         <div className="list">
-            <h3>My Helpers</h3>
+            <h3>All Helpers</h3>
             {/* Har man bokat hjälp?  */}
             {/* haveiBooked ?  */}
-            <p>You haven't asked for help (yet!)</p>
+            <p>The ones who have been booked</p>
 
             {/* : */}
                 { bookings.map ( (booking)=> { //listar ut alla bookningar
@@ -60,10 +60,11 @@ function BookingList() {
         </div>
         <hr />
         <div className="list">
-            <h3>My Students</h3>
+            <h3>All Students</h3>
+            <p>The ones who have asked for help</p>
+
             {/* Har man blivit bokad?  */}
             {/* amiBooked ?  */}
-            <p>No one have asked for your help (yet!)</p>
             
             {/* : */}
 
@@ -91,4 +92,4 @@ function BookingList() {
      )
 }
  
-export default BookingList;
+export default AllBookings;

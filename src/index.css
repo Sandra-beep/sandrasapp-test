@@ -1,3 +1,6 @@
+
+
+
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 body {
@@ -34,14 +37,15 @@ a {
 
 hr {
   margin-bottom: 5%;
-  width: 100%;
+  width: auto;
+
 }
 
-/* Navbar */
+/* ----------------Navbar-----------------*/
 .navbar {
   padding:20px 10px 0px;
   display: flex;
-  width: 100%;
+  width: auto;
   margin: 0px 5vw;
   border-bottom: 1px solid lightgrey;
 
@@ -63,9 +67,9 @@ hr {
   background-color: rgb(25, 180, 231);
 }
 
-/* Main */
+/* ----------------Main-----------------*/
 .content {
-  width: 100%;
+  width: auto;
   margin: 2vw;
   padding:4vw;
   display: flex;
@@ -78,14 +82,13 @@ hr {
 }
 
 
-/* Själva innehållet på en card */
+/* ----------------Product card-information-----------------*/
 .card {
   border: 1px solid darkgrey;
   padding:3vw;
   margin:3vw;
   min-width: 50vw;
 }
-
 
 .profile {
   width: auto;
@@ -101,15 +104,19 @@ hr {
   padding-left:20px;
 }
 
-.bookinglist {
-  border: 1px solid lightgray;
-  padding:30px;
-  margin:30px;
-  width: 600px;
+
+
+/* ----------------Forms-----------------*/
+*/
+
+.create-form, .update-form{
+display: flex;
+justify-content: center;
+flex-flow: column wrap;
+width: 70vw;
 }
 
-
-/* Button */
+/* ----------------Buttons-----------------*/
 button {
   border:grey 1px solid;
   background-color: white;
@@ -125,17 +132,17 @@ button a:hover {
   background-color: lightblue;
 }
 
-form {
-  display: flex;
-  justify-content: center;
-  flex-flow: column wrap;
-}
+
+/* ----------------Login-----------------*/
 
 
-.login-card{
+.login-card, .signup-card{
   border:1px solid lightgray;
-  padding: 10%;
+  width: auto;
+  padding: 10vw;
 }
+
+/* ----------------Input fields-----------------*/
 
 input {
   border:1px solid black;
@@ -144,9 +151,9 @@ input {
   border-left:0px;
   border-right:0px;
   border-bottom: 1px solid grey;
-  width: auto;
-  padding:10px;
-  margin:20px 0px;
+  width: 100%;
+  padding:10px 5px;
+  margin:10px 0px;
 }
 
 .email {
@@ -159,15 +166,33 @@ input {
   color:rgb(187, 187, 187);
 }
 
-/* BREAKPOINTS */
+
+.bookinglist {
+  border: 1px solid rgb(240, 240, 240);
+  padding:30px;
+  width: auto;
+  padding:5vw;
+}
+
+.footer {
+  margin: 0vw 4vw;
+  text-align: center;
+  color:lightgray;
+  border-top:1px solid lightgray;
+  border-left:0px;
+  border-right:0px;
+  border-bottom: 0px;
+}
+
+/* ----------------BREAKPOINTS-----------------*/
 @media only screen and (max-width: 800px){
   .navbar {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     padding-left:16px;
-    width: 105vw;
-    margin:0px;
+    width: auto;
+    margin: 0px 5vw;
   }
 
   .navbar .links {
@@ -179,7 +204,7 @@ input {
 
 }
 
-@media only screen and (max-width: 470px)
+@media only screen and (max-width: 540px)
 
 {.navbar .links {
   width: 100%;

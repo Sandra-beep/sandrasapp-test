@@ -5,9 +5,11 @@ import Update from './comp/Update';
 import Bookings from './comp/BookingList';
 import Login from './comp/Login';
 import Signup from './comp/Signup';
+import Footer from './comp/Footer';
 
 
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
 
@@ -25,6 +27,7 @@ function App() {
             <Route path = "/signup">    <Signup />    </Route>
           </Switch>
         </div>
+        <Footer />
       </div>
     </Router>
   );
