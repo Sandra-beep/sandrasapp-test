@@ -45,7 +45,7 @@ function Booking( {helperId, firstName, lastName, dateTime, price} ) {
             </button>
 
             <button > 
-                Cancel booking!
+                Cancel booking!!!
             </button>
 
         </div>
