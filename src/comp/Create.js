@@ -5,6 +5,7 @@ import axios from 'axios';
 const isAdmin = true;
 
 const Create = ()=> {
+
     const initialValues = {
         first_name:"", // hämtas auto från databasen
         last_name:"", // hämtas auto från databasen
@@ -17,7 +18,7 @@ const Create = ()=> {
 
     }
 
-    const [formValues, setFormValules] = useState(initialValues);
+    const [formValues, setFormValues] = useState(initialValues);
     //const [error, setError] = useState (" ");
     const [fileData, setFileData] = useState();
     const [firstName, setFirstName] = useState();
@@ -44,7 +45,7 @@ const Create = ()=> {
 
 
     function onHandleChange(event){
-        setFormValules( { ...formValues, [event.target.name]: event.target.value } )
+        setFormValues( { ...formValues, [event.target.name]: event.target.value } )
     }
 
     function handleOnChangePic(event){ 
@@ -148,7 +149,7 @@ const Create = ()=> {
                 />
 
                 <input type="number"
-                placeholder = "A little sugar for the favor (SEK)"
+                placeholder = "Price for the favor (SEK)"
                 value = {formValues.price}
                 name = "price"
                 onChange = { onHandleChange }

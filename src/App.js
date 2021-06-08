@@ -1,7 +1,6 @@
 import Navbar from './comp/Navbar';
 import Home from './comp/Home';
 import Create from './comp/Create';
-import Update from './comp/Update';
 import Bookings from './comp/BookingList';
 import Login from './comp/Login';
 import Signup from './comp/Signup';
@@ -21,7 +20,6 @@ function App() {
           <Switch>
             <Route exact path = "/">    <Home />      </Route>
             <Route path = "/create">    <Create />    </Route>
-            <Route path = "/update">    <Update />    </Route>
             <Route path = "/bookings">  <Bookings />  </Route>
             <Route path = "/login">     <Login />     </Route>
             <Route path = "/signup">    <Signup />    </Route>

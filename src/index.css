@@ -107,13 +107,18 @@ hr {
 
 
 /* ----------------Forms-----------------*/
-*/
+.bookinglist, .create-form {
+  border: 1px solid rgb(240, 240, 240);
+  padding:30px;
+  width: auto;
+  padding:5vw;
+}
 
 .create-form, .update-form{
 display: flex;
 justify-content: center;
+width: 50vw;
 flex-flow: column wrap;
-width: 70vw;
 }
 
 /* ----------------Buttons-----------------*/
@@ -166,13 +171,6 @@ input {
   color:rgb(187, 187, 187);
 }
 
-
-.bookinglist {
-  border: 1px solid rgb(240, 240, 240);
-  padding:30px;
-  width: auto;
-  padding:5vw;
-}
 
 .footer {
   margin: 0vw 4vw;

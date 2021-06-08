@@ -8,8 +8,8 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
     const customStyles = {
         content : {
           background: "lightgrey",
-          height        :   "300px",
-          width         :   "auto",
+          height        :   "auto",
+          width         :   "50vw",
           top           :   '50%',
           left          :   '50%',
           right         :   'auto',
@@ -20,14 +20,19 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
       };
 
     const intialValues = {
-       email:""
+        description:"",
+        language:"",
+        profile_image:"",
+        date_time: "",
+        price: null
     }
     const email_ls = localStorage.getItem("email");
 
 
     //Mina states
     
-    const [isAdmin, setIsAdmin] = useState(false)
+    // const [isLoggedIn, setIsLoggedIn] = useState(false) //flytta till navbar?
+    // const [isAdmin, setIsAdmin] = useState(false)
     const [formValues, setFormValues] = useState(intialValues);
     const [userId, setUserId] = useState(localStorage.getItem("userId"))
     const [token, setToken]= useState(localStorage.getItem("jwt"));
@@ -38,7 +43,7 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
 
 
     useEffect( ()=> { //läser från localstorage
-        const userId = localStorage.getItem("userId") //redan på rad 28??
+        const userId = localStorage.getItem("userId") //redan bland states?
         setUserId(userId)
   
     }, []) //[] empty dependency array, hook som kör funktionen 1 render
@@ -53,7 +58,6 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
     }
 
     function openDeleteModal(e) {
-        // setUserId(e.target.parentNode.previousSibling.previousSibling.previousSibling.innerHTML)
         setDeleteStatus(true)
     }
     
@@ -62,13 +66,14 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
     }
 
     function openEditModal(e) {
-        // setUserId(e.target.parentNode.previousSibling.previousSibling.previousSibling.innerHTML)
         setEditStatus(true)
     }
     
     function closeEditModal(){
         setEditStatus(false);
     }
+
+
 
     function onHandleChange(event){
         setFormValues({...formValues, [event.target.name] :  event.target.value})
@@ -81,12 +86,11 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
             user_id:userId,
             helper_id:helperId
 
-            }).then ( (res)=> {
-            console.log(res.data)
+            }).then ( ()=> {
             openModal();
 
-            }).catch ( (err) => {
-            console.log(err) 
+            }).catch ( () => {
+                // error-meddelande
             })
     }
 
@@ -103,12 +107,16 @@ async function deleteCard() { //om man är inloggad så man genom sitt id på lo
     )
 }
 
-function editCard() { //om man är inloggad så man genom sitt id på localstorage ta bort sig själv
-    axios.put(`http://localhost:1337/helpers/${helperId}`,
+async function editCard() { //om man är inloggad så man genom sitt id på localstorage ta bort sig själv
+    await axios.put(`http://localhost:1337/helpers/${helperId}`,
     
     { headers: {
         Authorization: `Bearer ${token}`,
       } }
+    )
+    .then(
+        closeEditModal(),
+        window.location.reload()
     )
 }
 
@@ -133,13 +141,13 @@ return (
             <p>{dateFormat(dateTime, "DDDD, dd mmm yyyy, HH.MM")} o'clock</p>
 
             
-            <p><b> Price: </b>{ price } SEK</p>
+            <p><b> Price: </b> { price } SEK</p>
         
             <button onClick = { openModal }> 
                 Book
             </button>
 
-            {/* isAdmin || userId == true ? */}
+            {/* isLoggedIn || userId == true ? */}
             <button onClick = { openEditModal }> 
                 Update
             </button>
@@ -176,10 +184,41 @@ return (
           contentLabel="Edit Session"
         >
 
-        <h2>Edit Session</h2>
-          <h3>Do you want to edit booked study session? </h3>
-          <button className="" onClick={editCard}>Yes</button>
-          <button className="" onClick={closeEditModal}>No</button>
+        <h2>Edit information</h2>
+          <h3>Do you want to update info? </h3>
+          <input type="text" 
+                placeholder = "Update description"
+                value = {formValues.description}
+                name = "description"
+                onChange = { onHandleChange }
+                required
+                />
+                
+                <input type="datetime-local" 
+                name="date_time" 
+                value = {formValues.date_time}
+                onChange = { onHandleChange }
+                required
+                />
+
+                <input type="text"
+                placeholder = "Update languages"
+                value = {formValues.language}
+                name = "language"
+                onChange = { onHandleChange }
+                required
+                />
+
+                <input type="number"
+                placeholder = "Update price for the favor (SEK)"
+                value = {formValues.price}
+                name = "price"
+                onChange = { onHandleChange }
+                required
+                />
+                
+          <button className="" onClick={editCard}>Yes, save new info!</button>
+          <button className="" onClick={closeEditModal}>No, I'm good!</button>
         </Modal>
 
         

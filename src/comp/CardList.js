@@ -13,8 +13,6 @@ const CardList = ()=> {
            const response = await axios.get("http://localhost:1337/helpers")
 
            setHelpers(response.data)
-        
-           console.log(response.data);
         }
 
         fetch()
