@@ -2,8 +2,6 @@ import axios from 'axios';
 import React , {useState, useEffect} from 'react';
 import Card from "./Card";
 
-// const CardList = (props) => {
-//     const students = props.students; } samma som :
 const CardList = ()=> {
 
     const [helpers, setHelpers] = useState([])

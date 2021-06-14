@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
 const isAdmin = true;
+const isHelper = true;
+const isRegularUser = true;
+
+//isAdmin && isHelper && isRegularUser
+
 
 const Create = ()=> {
 
@@ -35,7 +39,7 @@ const Create = ()=> {
             setFirstName(response.data[0].first_name);
             setLastName(response.data[0].last_name);
 
-            // console.log(response.data[0].last_name);
+            console.log(response.data[0].id);
         }
 
         fetchData();
@@ -54,7 +58,7 @@ const Create = ()=> {
 
     function onHandleSubmit(event) {
         event.preventDefault(); //förhindrar att sidan laddar om
-        
+        console.log(userId)
         axios.post("http://localhost:1337/helpers", {
             user_id:userId,
             first_name:firstName, //från state
@@ -65,7 +69,6 @@ const Create = ()=> {
             profile_image:formValues.profile_image,
             date_time:formValues.date_time,
             price:formValues.price
-
         })
         
         .then ( (response) => { //kod för att hantera bilden
@@ -78,8 +81,11 @@ const Create = ()=> {
             // axios för att ladda upp bilden/bilddatan i media library i strapi
             axios.post("http://localhost:1337/upload", data)
             
+            // history.push ("/") // Ska skickas vidare till Home
+
             .then( e=> console.log(e) )
             // .catch() (error)=> { console.log(error) }
+            
         } )
         
 
@@ -91,14 +97,14 @@ const Create = ()=> {
 
         <>
 
-        { isAdmin && ( 
-        
-            <form className="create-form" conSubmit = { onHandleSubmit } >
+        { isAdmin &&         ( // isLoggedIn funkade inte
+
+            <form className="create-form" onSubmit = { onHandleSubmit } >
             
                 <div className="">
                     <h2>I want to help out!</h2>
                     <p>Want to sign up as one of Santas Little Web Helpers?</p>
-                    <p>Write your info below! All fields are mandatory!</p>
+                    <p>Write your info below! (All fields are mandatory)</p>
                 </div>
             
                 <input type="text" 

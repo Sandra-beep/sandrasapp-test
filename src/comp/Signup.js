@@ -56,7 +56,7 @@ function handleOnSubmit(event) {
 return (
     <> 
     
-    {loggedIn ? (<div> </div>) : (
+    { loggedIn ? (<div> </div>) : (
     
     <div>
 

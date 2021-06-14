@@ -11,7 +11,7 @@ function Home(){
             <div className="intro-title">
                 <h2>Welcome to Web Study Buddy!</h2>
                 <p className="intro">
-                Here you can book a student to help you out. This student also studies web development in Medieinstitutet. Choose a student that is available, submit your email and await your booked time! </p>
+                Here you can book a student to help you out or be a helper. All students studies web development in Medieinstitutet, so just choose a nice student that is available, submit your email and await your booked time! </p>
                 <p>Happy studying!</p>
             </div>
 

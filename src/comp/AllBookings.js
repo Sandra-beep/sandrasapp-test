@@ -24,7 +24,7 @@ function AllBookings() {
 
         }
     
-        fetchData();
+        fetchData(); //anropar const fetchdata
     
     }, [] )
     

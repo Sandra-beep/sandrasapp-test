@@ -35,25 +35,25 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
     // const [isAdmin, setIsAdmin] = useState(false)
     const [formValues, setFormValues] = useState(intialValues);
     const [userId, setUserId] = useState(localStorage.getItem("userId"))
-    const [token, setToken]= useState(localStorage.getItem("jwt"));
+    const [token, setToken] = useState(localStorage.getItem("jwt"));
     const [modalStatus, setModalStatus] = useState(false);
     const [deleteStatus, setDeleteStatus] = useState(false); //deleteisopen
     const [editStatus, setEditStatus] = useState(false); //editisopen
 
 
 
-    useEffect( ()=> { //läser från localstorage
+    useEffect( ()=> { //Efter render
         const userId = localStorage.getItem("userId") //redan bland states?
         setUserId(userId)
   
-    }, []) //[] empty dependency array, hook som kör funktionen 1 render
+    }, []) //[] empty dependency array, kör funktionen 1 render
 
 
-    function openModal(){
+    function openBookModal(){
         setModalStatus(true)
     }
 
-    function closeModal(){
+    function closeBookModal(){
         setModalStatus(false)
     }
 
@@ -65,8 +65,21 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
         setDeleteStatus(false);
     }
 
-    function openEditModal(e) {
+    const [editInfo, setEditInfo] = useState({});
+
+    
+    const onEditChange = ({target}) => {
+        const {name, value} = target;
+        
+        setEditInfo({...editInfo, [name]:value})
+        
+    }
+
+
+    async function openEditModal(e) {
+        await axios.get(`http://localhost:1337/helpers/${helperId}`).then(res => setEditInfo(res.data))
         setEditStatus(true)
+
     }
     
     function closeEditModal(){
@@ -82,19 +95,35 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
     function onHandleSubmit(event){
         event.preventDefault(); //förhindrar uppdatering av sidan
         
-        axios.post("http://localhost:1337/bookings", { //Fixar så att man kan hämta en user-booking
+        axios.post("http://localhost:1337/bookings", { //Lägger ut information i user-booking
             user_id:userId,
             helper_id:helperId
 
             }).then ( ()=> {
-            openModal();
+            openBookModal();
 
             }).catch ( () => {
                 // error-meddelande
             })
     }
 
-async function deleteCard() { //om man är inloggad så man genom sitt id på localstorage ta bort sig själv
+
+
+    async function editCard() { //om man är inloggad så man genom sitt id på localstorage ta bort sig själv
+    await axios.put(`http://localhost:1337/helpers/${helperId}`, editInfo
+    
+    )
+    .then(
+        closeEditModal(),
+        window.location.reload()
+    ).catch(err => console.log("err", err))
+    }
+
+
+
+
+
+    async function deleteCard() { //om man är inloggad så man genom sitt id på localstorage ta bort sig själv
     await axios.delete(`http://localhost:1337/helpers/${helperId}`,
     
     { headers: {
@@ -105,23 +134,11 @@ async function deleteCard() { //om man är inloggad så man genom sitt id på lo
         closeDeleteModal(),
         window.location.reload()
     )
-}
-
-async function editCard() { //om man är inloggad så man genom sitt id på localstorage ta bort sig själv
-    await axios.put(`http://localhost:1337/helpers/${helperId}`,
-    
-    { headers: {
-        Authorization: `Bearer ${token}`,
-      } }
-    )
-    .then(
-        closeEditModal(),
-        window.location.reload()
-    )
-}
+    }
 
 return (
     <>
+    
         <div className = "card" key = { helperId } >
             
             <div className = "profile">
@@ -142,12 +159,13 @@ return (
 
             
             <p><b> Price: </b> { price } SEK</p>
-        
-            <button onClick = { openModal }> 
+            
+            {/* : */}
+
+            <button onClick = { openBookModal }> 
                 Book
             </button>
 
-            {/* isLoggedIn || userId == true ? */}
             <button onClick = { openEditModal }> 
                 Update
             </button>
@@ -156,11 +174,9 @@ return (
                 Delete
             </button>
         
-
         </div>
 
         
-        {/* : */}
         <Modal
           isOpen= { deleteStatus }
           onRequestClose={closeDeleteModal}
@@ -185,46 +201,45 @@ return (
         >
 
         <h2>Edit information</h2>
-          <h3>Do you want to update info? </h3>
+        <h3>Do you want to update info? </h3>
+        <form  method="post" className="" onSubmit={editCard}>
+
           <input type="text" 
                 placeholder = "Update description"
-                value = {formValues.description}
+                value = {editInfo.description}
                 name = "description"
-                onChange = { onHandleChange }
-                required
+                onChange = { onEditChange }
                 />
                 
-                <input type="datetime-local" 
-                name="date_time" 
-                value = {formValues.date_time}
-                onChange = { onHandleChange }
-                required
+                <input type="text"
+                placeholder="Update languages"
+                name = "language"
+                value = {editInfo.language}
+                onChange = { onEditChange }
                 />
 
-                <input type="text"
-                placeholder = "Update languages"
-                value = {formValues.language}
-                name = "language"
-                onChange = { onHandleChange }
-                required
+                <input type="datetime-local" 
+                name="date_time" 
+                value = {editInfo.date_time}
+                onChange = { onEditChange }
                 />
 
                 <input type="number"
                 placeholder = "Update price for the favor (SEK)"
-                value = {formValues.price}
+                value = {editInfo.price}
                 name = "price"
-                onChange = { onHandleChange }
-                required
+                onChange = { onEditChange }
                 />
                 
-          <button className="" onClick={editCard}>Yes, save new info!</button>
+          <button type ="submit"className="">Yes, save new info!</button>
           <button className="" onClick={closeEditModal}>No, I'm good!</button>
+          </form>
         </Modal>
 
         
         <Modal 
         isOpen = { modalStatus }
-        onRequestClose = { closeModal }
+        onRequestClose = { closeBookModal }
         style = {customStyles}
         ariaHideApp={false}
         contentLabel = "Confirmation"
@@ -241,12 +256,13 @@ return (
             Confirm
             </button> }
             
-            <button onClick = { closeModal }>
+            <button onClick = { closeBookModal }>
             Close
             </button>
         </form>
-        
         </Modal>
+        {/* : <div></div> */}
+
     </>
     )
 }
