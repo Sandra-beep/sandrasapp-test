@@ -39,8 +39,8 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
     const [modalStatus, setModalStatus] = useState(false);
     const [deleteStatus, setDeleteStatus] = useState(false); //deleteisopen
     const [editStatus, setEditStatus] = useState(false); //editisopen
-
-
+    const [disableStatus, setDisableStatus] = useState(false);
+    const [confirmText, setConfirmText] = useState("Confirm");
 
     useEffect( ()=> { //Efter render
         const userId = localStorage.getItem("userId") //redan bland states?
@@ -57,7 +57,7 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
         setModalStatus(false)
     }
 
-    function openDeleteModal(e) {
+    function openDeleteModal(e){
         setDeleteStatus(true)
     }
     
@@ -79,7 +79,6 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
     async function openEditModal(e) {
         await axios.get(`http://localhost:1337/helpers/${helperId}`).then(res => setEditInfo(res.data))
         setEditStatus(true)
-
     }
     
     function closeEditModal(){
@@ -100,8 +99,12 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
             helper_id:helperId
 
             }).then ( ()=> {
-            openBookModal();
-
+            openBookModal(); //ändra state så confirmed blir disabled
+            setDisableStatus(true);
+            // deklarera en state som kan ha true eller falsk value
+            // ändra state till true här 
+            // i jsx du skulle ändra disable= {statenamn}
+            setConfirmText("Confirmed!");
             }).catch ( () => {
                 // error-meddelande
             })
@@ -109,7 +112,7 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
 
 
 
-    async function editCard() { //om man är inloggad så man genom sitt id på localstorage ta bort sig själv
+    async function editCard() { //om isHelper && isRegularUser, kan man ändra sin info
     await axios.put(`http://localhost:1337/helpers/${helperId}`, editInfo
     
     )
@@ -123,7 +126,7 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
 
 
 
-    async function deleteCard() { //om man är inloggad så man genom sitt id på localstorage ta bort sig själv
+    async function deleteCard() { //om isHelper && isRegularUser, kan man ta bort en card
     await axios.delete(`http://localhost:1337/helpers/${helperId}`,
     
     { headers: {
@@ -252,8 +255,8 @@ return (
             <input type="text" name="email" value={ email_ls } />
             
             {/* Behöver en useState som ändrar läge confirm till confirmed! i modalen */}
-            {<button type="submit" >
-            Confirm
+            {<button type="submit" disabled ={disableStatus}>
+            {confirmText}
             </button> }
             
             <button onClick = { closeBookModal }>

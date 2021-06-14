@@ -20,7 +20,8 @@ function BookingList() {
             // })
             setBookings(response.data);
             setUserId(userId);
-            console.log(response.data);
+            
+            // console.log(response.data);
 
         }
     
