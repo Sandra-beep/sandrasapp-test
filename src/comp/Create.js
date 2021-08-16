@@ -32,13 +32,12 @@ const Create = ()=> {
 
 
     useEffect( ()=> { //läser från localstorage
-        const email = localStorage.getItem("email")
+        const email = localStorage.getItem("email");
         const fetchData = async ()=> {
             const response = await axios.get(`http://localhost:1337/users?email=${email}`)
             setUserId(response.data[0].id);
             setFirstName(response.data[0].first_name);
             setLastName(response.data[0].last_name);
-
             console.log(response.data[0].id);
         }
 
@@ -81,7 +80,6 @@ const Create = ()=> {
             // axios för att ladda upp bilden/bilddatan i media library i strapi
             axios.post("http://localhost:1337/upload", data)
             
-            // history.push ("/") // Ska skickas vidare till Home
 
             .then( e=> console.log(e) )
             // .catch() (error)=> { console.log(error) }

@@ -1,12 +1,13 @@
 import Navbar from './comp/Navbar';
 import Home from './comp/Home';
 import Create from './comp/Create';
+import MyInfo from './comp/Myinfo';
 import Bookings from './comp/BookingList';
 import Login from './comp/Login';
 import Signup from './comp/Signup';
+import Logout from './comp/Logout';
+
 import Footer from './comp/Footer';
-
-
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -20,8 +21,10 @@ function App() {
           <Switch>
             <Route exact path = "/">    <Home />      </Route>
             <Route path = "/create">    <Create />    </Route>
+            <Route path = "/myinfo">    <MyInfo />    </Route>
             <Route path = "/bookings">  <Bookings />  </Route>
             <Route path = "/login">     <Login />     </Route>
+            <Route path = "/logout">    <Logout />    </Route>
             <Route path = "/signup">    <Signup />    </Route>
           </Switch>
         </div>

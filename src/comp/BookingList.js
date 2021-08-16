@@ -10,7 +10,6 @@ function BookingList() {
     
     useEffect( ()=> { //callback
 
-
         const fetchData = async ()=> { //hämta data från API
             const response = await axios.get(`http://localhost:1337/bookings?user_id.id=${userId}`)
             // ,{
@@ -30,20 +29,19 @@ function BookingList() {
     }, [] )
     
     return ( 
-        <>
-        <div className="bookinglist">
 
+        <>
+
+        <div className="bookinglist">
         <h2>My booked sessions</h2>
         <div className="list">
             <h3>My Helpers</h3>
-            {/* Har man bokat hjälp?  */}
-            {/* haveiBooked ?  */}
-            <p>You haven't asked for help (yet!)</p>
 
-            {/* : */}
                 { bookings.map ( (booking)=> { //listar ut alla bookningar
                     
                     return (
+                    <>
+                    { bookings ? (
                         <Booking key  =   { booking.id } 
                         helperId    =   { booking.id } 
                         email       =   { booking.email }  
@@ -54,23 +52,35 @@ function BookingList() {
                         price       =   { booking.helper_id.price }
 
                      />
+                     ) : 
+                     
+                     (<div>
+                     </div>)
+                    }
+                    </>
                     )
+                    
                 })
             }
 
+            { bookings.length>0 ? (<div></div>) : (
+            <p>You haven't asked for help (yet!)</p>)
+            }
+
         </div>
+
+
         <hr />
+
+
         <div className="list">
-            <h3>My Students</h3>
-            {/* Har man blivit bokad?  */}
-            {/* amiBooked ?  */}
-            <p>No one have asked for your help (yet!)</p>
-            
-            {/* : */}
+            <h3>My Students</h3>            
 
             { bookings.map ( (booking)=> { //listar ut alla bookningar
                     
-                    return ( //är det här man kopplar?
+                    return (
+                    <>
+                    { bookings.length<0 ? (
                         <Booking key  =   { booking.id } 
                         userId      =   { booking.user_id } 
                         email       =   { booking.email }  
@@ -78,14 +88,30 @@ function BookingList() {
                         lastName    =   { booking.user_id.last_name }  
                         language    =   { booking.language } 
                         dateTime    =   { booking.date_time }
-                        price    =   { booking.helper_id.price }
+                        price       =   { booking.helper_id.price }
 
                      />
-                    )
-                })
+                    ) :
+
+                    (<div>
+                    </div>)
+                }
+                </>
+                )
+            })
             }
+
+                { bookings.length>1 ? (<div></div>) 
+                
+                : 
+                
+                (
+                <p>No one have asked for your help (yet!)</p>
+                )
+                }
+
             </div>
-        </div>
+            </div>
         </>
 
         

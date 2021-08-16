@@ -65,26 +65,25 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
         setDeleteStatus(false);
     }
 
-    const [editInfo, setEditInfo] = useState({});
 
+    const [editInfo, setEditInfo] = useState({});
     
-    const onEditChange = ({target}) => {
+    const onEditChange = ({ target }) => {
         const {name, value} = target;
         
         setEditInfo({...editInfo, [name]:value})
-        
+    
     }
 
 
     async function openEditModal(e) {
-        await axios.get(`http://localhost:1337/helpers/${helperId}`).then(res => setEditInfo(res.data))
+        await axios.get(`http://localhost:1337/helpers/${ helperId }`).then(res => setEditInfo(res.data))
         setEditStatus(true)
     }
     
     function closeEditModal(){
         setEditStatus(false);
     }
-
 
 
     function onHandleChange(event){
@@ -109,7 +108,6 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
                 // error-meddelande
             })
     }
-
 
 
     async function editCard() { //om isHelper && isRegularUser, kan man ändra sin info
@@ -234,7 +232,7 @@ return (
                 onChange = { onEditChange }
                 />
                 
-          <button type ="submit"className="">Yes, save new info!</button>
+          <button type ="submit" className="">Yes, save new info!</button>
           <button className="" onClick={closeEditModal}>No, I'm good!</button>
           </form>
         </Modal>

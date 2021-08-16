@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import axios from "axios";
+import axios from "axios"; // för att senare kunna hämta från databasen
 import { useHistory } from 'react-router-dom'; //hämtar historia
 
 
@@ -11,14 +11,14 @@ const intialValue = { //sätter tomma värden som default
     first_name:"",
     last_name:"",
     email:"",
-    password:"" //Inga mellanslag i "", annars blir det en punkt
+    password:"" //Inga mellanslag i "", annars blir det en punkt på weeben
 }
 
 const [registerValues, setRegisterValues] = useState(intialValue)
 // const [username, setUsername] = useState(" ");
 const [loggedIn, SetLoggedIn] = useState(false); //kollar om redan är registrerad?
 const [error, setError] = useState (" ");
-const history = useHistory();
+const history = useHistory(); //en variabel innehållandes en funktion
 
 //denna ändrar innehållet
 function handleOnChange(event) {
