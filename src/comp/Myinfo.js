@@ -46,7 +46,7 @@ function MyInfo(props) {
             setFirstName(response.data[0].first_name);
             setLastName(response.data[0].last_name);
             
-            console.log(response.data[0]);
+            // console.log(response.data[0]);
 
         }
 

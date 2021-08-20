@@ -93,7 +93,7 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
     function onHandleSubmit(event){
         event.preventDefault(); //förhindrar uppdatering av sidan
         
-        axios.post("http://localhost:1337/bookings", { //Lägger ut information i user-booking
+        axios.post("http://localhost:1337/bookings/", { //Lägger ut information i user-booking
             user_id:userId,
             helper_id:helperId
 

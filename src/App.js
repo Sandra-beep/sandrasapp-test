@@ -1,8 +1,8 @@
 import Navbar from './comp/Navbar';
 import Home from './comp/Home';
 import Create from './comp/Create';
-import MyInfo from './comp/Myinfo';
 import Bookings from './comp/BookingList';
+import MyInfo from './comp/Myinfo';
 import Login from './comp/Login';
 import Signup from './comp/Signup';
 import Logout from './comp/Logout';
@@ -21,8 +21,8 @@ function App() {
           <Switch>
             <Route exact path = "/">    <Home />      </Route>
             <Route path = "/create">    <Create />    </Route>
-            <Route path = "/myinfo">    <MyInfo />    </Route>
             <Route path = "/bookings">  <Bookings />  </Route>
+            <Route path = "/myinfo">    <MyInfo />    </Route>
             <Route path = "/login">     <Login />     </Route>
             <Route path = "/logout">    <Logout />    </Route>
             <Route path = "/signup">    <Signup />    </Route>

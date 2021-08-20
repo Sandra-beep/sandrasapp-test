@@ -31,7 +31,6 @@ function BookingList() {
     return ( 
 
         <>
-
         <div className="bookinglist">
         <h2>My booked sessions</h2>
         <div className="list">
@@ -42,20 +41,21 @@ function BookingList() {
                     return (
                     <>
                     { bookings ? (
-                        <Booking key  =   { booking.id } 
-                        helperId    =   { booking.id } 
-                        email       =   { booking.email }  
-                        firstName   =   { booking.helper_id.first_name }
-                        lastName    =   { booking.helper_id.last_name }  
-                        language    =   { booking.language } 
-                        dateTime    =   { booking.helper_id.date_time }
-                        price       =   { booking.helper_id.price }
+                        <Booking key    =   { booking.id } 
+                        helperId        =   { booking.id } 
+                        email           =   { booking.email }  
+                        firstName       =   { booking.helper_id.first_name }
+                        lastName        =   { booking.helper_id.last_name }  
+                        language        =   { booking.language } 
+                        dateTime        =   { booking.helper_id.date_time }
+                        price           =   { booking.helper_id.price }
 
                      />
-                     ) : 
+                     ) 
                      
-                     (<div>
-                     </div>)
+                     : 
+                     
+                     (<div></div>)
                     }
                     </>
                     )
@@ -63,8 +63,10 @@ function BookingList() {
                 })
             }
 
-            { bookings.length>0 ? (<div></div>) : (
-            <p>You haven't asked for help (yet!)</p>)
+            { bookings.length>0 ? 
+            (<div></div>) 
+            : 
+            (<p>You haven't asked for help (yet!)</p>)
             }
 
         </div>
@@ -80,28 +82,31 @@ function BookingList() {
                     
                     return (
                     <>
-                    { bookings.length<0 ? (
-                        <Booking key  =   { booking.id } 
-                        userId      =   { booking.user_id } 
-                        email       =   { booking.email }  
-                        firstName   =   { booking.user_id.first_name }
-                        lastName    =   { booking.user_id.last_name }  
-                        language    =   { booking.language } 
-                        dateTime    =   { booking.date_time }
-                        price       =   { booking.helper_id.price }
+                    { bookings!==userId ? (
+                        <Booking key    =   { booking.id } 
+                        userId          =   { booking.user_id } 
+                        email           =   { booking.email }  
+                        firstName       =   { booking.user_id.first_name }
+                        lastName        =   { booking.user_id.last_name }  
+                        language        =   { booking.language } 
+                        dateTime        =   { booking.date_time }
+                        price           =   { booking.helper_id.price }
 
                      />
-                    ) :
+                    ) 
+                    
+                    :
 
-                    (<div>
-                    </div>)
+                    (<div></div>)
                 }
                 </>
                 )
             })
             }
 
-                { bookings.length>1 ? (<div></div>) 
+                { bookings<0    ? 
+                
+                (<div></div>) 
                 
                 : 
                 

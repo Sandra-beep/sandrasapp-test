@@ -11,6 +11,8 @@ body {
   font-family: 'Quicksand', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: rgb(65, 65, 65);
+
 }
 
 h1 {
@@ -19,6 +21,7 @@ h1 {
 
 h2 {
   padding-bottom: 1rem;
+
 }
 
 h4 {
@@ -123,8 +126,9 @@ flex-flow: column wrap;
 
 /* ----------------Buttons-----------------*/
 button {
-  color: black;
+  color: rgb(43, 43, 43);
   border:grey 1px solid;
+  border-radius: 20px;
   background-color: white;
   cursor: pointer;
   font-size: 2.5vw;
