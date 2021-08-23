@@ -104,6 +104,7 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
             // ändra state till true här 
             // i jsx du skulle ändra disable= {statenamn}
             setConfirmText("Confirmed!");
+            
             }).catch ( () => {
                 // error-meddelande
             })

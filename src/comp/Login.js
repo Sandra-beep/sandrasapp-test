@@ -36,12 +36,13 @@ function Login(){
 
         // Hantering om inloggningen gick igenom
         .then (response => { //Sparar allt i localstorage
-        
+        console.log("response", response)
         localStorage.setItem("jwt", response.data.jwt);
+        localStorage.setItem("helperId", response.data.user.helper_id.id)
         localStorage.setItem("userId", response.data.user.id); //userId, benämning i localstorage. data.user.id, hämtning i API
         localStorage.setItem("email", formValues.email);
         history.push ("/") // Ska skickas vidare till Home
-        window.location.reload();//?
+        window.location.reload();
         
     })
 

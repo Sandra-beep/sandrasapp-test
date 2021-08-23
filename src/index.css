@@ -12,6 +12,7 @@ body {
   color: rgb(53, 53, 53);
 }
 
+
 h1 {
   color: rgb(25, 180, 231);
 }
@@ -146,8 +147,6 @@ button:hover
   color: white;
   background-color: rgb(25, 180, 231);
   border:white 1px solid;
-  cursor: pointer;
-  font-size: 2.7vw;
   font-family: 'Quicksand', sans-serif;
 
   -webkit-transition: background-color 1s ease-out;
@@ -210,6 +209,7 @@ input {
 
 /* ----------------BREAKPOINTS-----------------*/
 @media only screen and (max-width: 800px){
+
   .navbar {
     display: flex;
     justify-content: center;
@@ -224,17 +224,20 @@ input {
     margin: auto;
     display: flex;
     justify-content: center;
+    color:black;
   }
 
 }
 
 @media only screen and (max-width: 540px)
 
-{.navbar .links {
+{
+  .navbar .links {
   width: 100%;
   margin: auto;
   display: flex;
   justify-content: center;
   flex-flow: column wrap;
 
-}}
+}
+}

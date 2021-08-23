@@ -6,6 +6,8 @@ function BookingList() {
 
     const [bookings, setBookings] = useState ([]);
     const [userId, setUserId] = useState(localStorage.getItem("userId"));
+    const [students, setStudents] = useState([])
+    const loggedInHelper = localStorage.getItem('helperId')
     // const [token, setToken] = useState(localStorage.getItem("jwt"));
     
     useEffect( ()=> { //callback
@@ -27,6 +29,19 @@ function BookingList() {
         fetchData();
     
     }, [] )
+
+    useEffect(() => {
+        if(!loggedInHelper)return
+
+        const getStudents = async () => {
+            const response = await axios.get(`http://localhost:1337/bookings?helper_id=${loggedInHelper}`)
+            setStudents(...students, response.data)
+        }
+
+        getStudents()
+    }, [])
+
+    console.log("students", students)
     
     return ( 
 
@@ -78,11 +93,11 @@ function BookingList() {
         <div className="list">
             <h3>My Students</h3>            
 
-            { bookings.map ( (booking)=> { //listar ut alla bookningar
+            { students.map ( (booking)=> { //listar ut alla bookningar
                     
                     return (
                     <>
-                    { bookings!==userId ? (
+                    { students && (
                         <Booking key    =   { booking.id } 
                         userId          =   { booking.user_id } 
                         email           =   { booking.email }  
@@ -94,26 +109,17 @@ function BookingList() {
 
                      />
                     ) 
-                    
-                    :
-
-                    (<div></div>)
                 }
                 </>
                 )
             })
             }
 
-                { bookings<0    ? 
+                { students.length === 0    &&
                 
-                (<div></div>) 
+                (<p>No one have asked for your help (yet!)</p>)
                 
-                : 
-                
-                (
-                <p>No one have asked for your help (yet!)</p>
-                )
-                }
+            }
 
             </div>
             </div>

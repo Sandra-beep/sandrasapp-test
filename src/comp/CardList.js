@@ -2,19 +2,29 @@ import axios from 'axios';
 import React , {useState, useEffect} from 'react';
 import Card from "./Card";
 
-const CardList = ()=> {
+function CardList() {
 
     const [helpers, setHelpers] = useState([])
+    // const [loadPage, setLoadpage] = useState(2); //(2) typ av default-värde
 
     useEffect(  ()=> {
         async function fetch(){
-           const response = await axios.get("http://localhost:1337/helpers")
+           const response = await axios.get(`http://localhost:1337/helpers?_limit=2`)
+        // ("http://localhost:1337/helpers") original utan paginering
+
+        // `http://localhost:1337/helpers?_limit=${loadpage}`
 
            setHelpers(response.data)
         }
 
         fetch()
   }, [])
+
+    // function loadMore() { //utöver de 2 som är default så laddas det 2 till.
+    //     let dynamicPage = loadMore + 2;
+    //     setLoadpage(dynamicPage);
+    // }
+
 
     return ( //här loopas varje card
         <div className="">
