@@ -76,7 +76,6 @@ function MyInfo(props) {
             first_name:editInfo.firstname,
             last_name:editInfo.lastname,
             email:editInfo.email
-
         }
         
         )
@@ -139,16 +138,14 @@ function MyInfo(props) {
             <p>My name: {firstName} </p>
             <p>My lastname: {lastName} </p>
             <p>My email: {email} </p>
-            {/* {email} */}
 
+                    <button onClick = { openEditModal }>
+                        Update
+                    </button>
 
-             <button onClick = { openEditModal }>
-                Update
-            </button>
-
-            <button className ="deletebutton" onClick = { openDeleteModal }> 
-                Delete Account
-            </button>
+                    <button className ="delete-button" onClick = { openDeleteModal }> 
+                        Delete Account
+                    </button>
             </div>
 
         <Modal

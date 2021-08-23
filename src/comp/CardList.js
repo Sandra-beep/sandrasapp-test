@@ -17,7 +17,7 @@ const CardList = ()=> {
   }, [])
 
     return ( //här loopas varje card
-        <div className="list">
+        <div className="">
 
         { helpers.map( (helper)=> { //Här mappar jag ut från API/Strapi
                  return ( // ex email, är det vi skickar på props sen upp i funktionen. {helper.email} är det som hämtas från API

@@ -6,9 +6,7 @@ import MyInfo from './comp/Myinfo';
 import Login from './comp/Login';
 import Signup from './comp/Signup';
 import Logout from './comp/Logout';
-
 import Footer from './comp/Footer';
-
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {

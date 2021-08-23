@@ -7,7 +7,7 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
 
     const customStyles = {
         content : {
-          background: "lightgrey",
+          background: "white",
           height        :   "auto",
           width         :   "50vw",
           top           :   '50%',
@@ -15,7 +15,7 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
           right         :   'auto',
           bottom        :   'auto',
           marginRight   :   '-50%',
-          transform     :   'translate(-50%, -50%)'
+          transform     :   'translate(-50%, -50%)',
         }
       };
 
@@ -162,7 +162,7 @@ return (
             <p><b> Price: </b> { price } SEK</p>
             
             {/* : */}
-
+            
             <button onClick = { openBookModal }> 
                 Book
             </button>
@@ -171,10 +171,10 @@ return (
                 Update
             </button>
                                             
-            <button onClick = { openDeleteModal }> 
+            <button className ="delete-button" onClick = { openDeleteModal }> 
                 Delete
             </button>
-        
+            
         </div>
 
         

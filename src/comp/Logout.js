@@ -14,10 +14,10 @@ function Logout(props) {
 
     return (
     <>        
-        <div className = "logout-question">
+        <div className = "logout-card">
             <h2>Do you want to log out?</h2>
             <button onClick = { handleLogout } >
-            <Link to = "">Yes, log me out!</Link>
+            Yes, log me out!
             </button>
 
             <button>

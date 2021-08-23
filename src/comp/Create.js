@@ -167,10 +167,9 @@ const Create = ()=> {
 
                     {/* Error meddelande */}
                     {/* <h5> { error } </h5> */}
-        
+
                 <button type = "submit" 
                 onClick = { onHandleSubmit }>Add me as a Helper!</button>
-            
             </form>
         
         )}
