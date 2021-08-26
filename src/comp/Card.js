@@ -28,13 +28,12 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
         date_time: "",
         price: null
     }
+
     const email_ls = localStorage.getItem("email");
 
 
     //Mina states
     
-    // const [isLoggedIn, setIsLoggedIn] = useState(false) //flytta till navbar?
-    // const [isAdmin, setIsAdmin] = useState(false)
     const [formValues, setFormValues] = useState(intialValues);
     const [userId, setUserId] = useState(localStorage.getItem("userId"))
     const [token, setToken] = useState(localStorage.getItem("jwt"));
@@ -45,7 +44,7 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
     const [confirmText, setConfirmText] = useState("Confirm");
 
     useEffect( ()=> { //Efter render
-        const userId = localStorage.getItem("userId") //redan bland states?
+
         setUserId(userId)
   
     }, []) //[] empty dependency array, kör funktionen 1 render
@@ -76,7 +75,6 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
         setEditInfo({...editInfo, [name]:value})
     
     }
-
 
     async function openEditModal(e) {
         await axios.get(`${server}helpers/${ helperId }`).then(res => setEditInfo(res.data))
@@ -163,20 +161,21 @@ return (
 
             
             <p><b> Price: </b> { price } SEK</p>
-            
-            {/* : */}
-            
-            <button onClick = { openBookModal }> 
-                Book
-            </button>
 
-            <button onClick = { openEditModal }> 
-                Update
-            </button>
-                                            
-            <button className ="delete-button" onClick = { openDeleteModal }> 
-                Delete
-            </button>
+            <div className = "card-buttons">            
+                <button onClick = { openBookModal }> 
+                    Book
+                </button>
+
+                <button onClick = { openEditModal }> 
+                    Update
+                </button>
+                                                
+                <button className ="delete-button" 
+                onClick = { openDeleteModal }> 
+                    Delete
+                </button>
+            </div>
             
         </div>
 

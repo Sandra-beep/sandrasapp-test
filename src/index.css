@@ -12,7 +12,6 @@ body {
   color: rgb(53, 53, 53);
 }
 
-
 h1 {
   color: rgb(25, 180, 231);
 }
@@ -128,6 +127,12 @@ flex-flow: column wrap;
 }
 
 /* ----------------Buttons-----------------*/
+
+.card-buttons{
+border: 1px solid white;
+display: flex;
+align-items: center;
+}
 
 button
 {

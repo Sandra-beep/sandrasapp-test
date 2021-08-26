@@ -27,7 +27,7 @@ function Login(){
         setJwt(jwt);
 
     },[] )
-    
+
     //en axios request för login sidan
     function handleOnSubmit(event){ 
         event.preventDefault();        
@@ -43,7 +43,7 @@ function Login(){
         localStorage.setItem("helperId", response.data.user.helper_id.id)
         localStorage.setItem("userId", response.data.user.id); //userId, benämning i localstorage. data.user.id, hämtning i API
         localStorage.setItem("email", formValues.email);
-        history.push ("/") // Ska skickas vidare till Home
+        history.push ("/home") // Ska skickas vidare till Home
         window.location.reload();
         
         })
