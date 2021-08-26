@@ -41,6 +41,7 @@ hr {
 }
 
 /* ----------------Navbar-----------------*/
+
 .navbar {
   padding:20px 10px 0px;
   display: flex;
@@ -72,6 +73,7 @@ hr {
 
 
 /* ----------------Main-----------------*/
+
 .content {
   width: auto;
   margin: 2vw;
@@ -92,6 +94,15 @@ hr {
   padding:3vw;
   margin:3vw;
   min-width: 50vw;
+}
+
+.card:hover {
+  box-shadow: 2px 5px 7px #e7e7e7;
+
+  -webkit-transition: box-shadow 0.3s ease-out;
+  -moz-transition: box-shadow 0.3s ease-out;
+  -o-transition: box-shadow 0.3s ease-out;
+  transition: box-shadow 0.3s ease-out;
 }
 
 .profile {
@@ -137,12 +148,12 @@ align-items: center;
 button
 {
   border:grey 1px solid;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: white;
   cursor: pointer;
   font-size: 2.5vw;
   font-family: 'Quicksand', sans-serif;
-  margin: 0px auto 10px;
+  margin: 1%;
   width: 100%;
   padding:10px; 
 }
@@ -153,6 +164,7 @@ button:hover
   background-color: rgb(25, 180, 231);
   border:white 1px solid;
   font-family: 'Quicksand', sans-serif;
+  box-shadow: 2px 5px 7px #e7e7e7;
 
   -webkit-transition: background-color 1s ease-out;
   -moz-transition: background-color 1s ease-out;
