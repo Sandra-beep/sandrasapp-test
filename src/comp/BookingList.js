@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import Booking from './Booking';
+import {server} from "./config";
+
 
 function BookingList() {
 
@@ -13,7 +15,7 @@ function BookingList() {
     useEffect( ()=> { //callback
 
         const fetchData = async ()=> { //hämta data från API
-            const response = await axios.get(`http://localhost:1337/bookings?user_id.id=${userId}`)
+            const response = await axios.get(`${server}bookings?user_id.id=${userId}`)
             // ,{
             //     headers: {
             //         Authorization: `Bearer ${token}`,
@@ -34,14 +36,15 @@ function BookingList() {
         if(!loggedInHelper)return
 
         const getStudents = async () => {
-            const response = await axios.get(`http://localhost:1337/bookings?helper_id=${loggedInHelper}`)
+            const response = await axios.get(`${server}bookings?helper_id=${loggedInHelper}`)
             setStudents(...students, response.data)
         }
 
         getStudents()
+        
     }, [])
 
-    console.log("students", students)
+    // console.log("students", students)
     
     return ( 
 
@@ -66,22 +69,15 @@ function BookingList() {
                         price           =   { booking.helper_id.price }
 
                      />
-                     ) 
-                     
-                     : 
-                     
-                     (<div></div>)
+                     ) : (<div></div>)
                     }
                     </>
                     )
-                    
                 })
             }
 
             { bookings.length>0 ? 
-            (<div></div>) 
-            : 
-            (<p>You haven't asked for help (yet!)</p>)
+            (<div></div>) : (<p>You haven't asked for help (yet!)</p>)
             }
 
         </div>
@@ -122,7 +118,7 @@ function BookingList() {
             }
 
             </div>
-            </div>
+        </div>
         </>
 
         

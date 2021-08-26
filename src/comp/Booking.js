@@ -3,9 +3,7 @@ import axios from 'axios';
 import Modal from "react-modal";
 import dateFormat from 'dateformat';
 import { loadStripe } from '@stripe/stripe-js';
-
-
-
+import {server} from "./config";
 
 
 function Booking( {helperId, firstName, lastName, dateTime, price} ) {
@@ -23,7 +21,7 @@ function Booking( {helperId, firstName, lastName, dateTime, price} ) {
       transform     :   'translate(-50%, -50%)'
     }
   };
-  const [token, setToken] = useState(localStorage.getItem("jwt"));
+  const token = localStorage.getItem("jwt");
   const [deleteStatus, setDeleteStatus] = useState(false);
 
   function openDeleteModal(e) {
@@ -35,7 +33,7 @@ function Booking( {helperId, firstName, lastName, dateTime, price} ) {
   }
 
   async function deleteSession() { //om isHelper && isRegularUser, kan man ta bort en card
-    await axios.delete(`http://localhost:1337/bookings/${helperId}`,
+    await axios.delete(`${server}bookings/${helperId}`,
     
     { headers: {
         Authorization: `Bearer ${token}`,
@@ -58,7 +56,7 @@ function Booking( {helperId, firstName, lastName, dateTime, price} ) {
         const stripe = await stripePromise;
     
         // Call your backend to create the Checkout Session
-        const response = await axios.post("http://localhost:4242/create-checkout-session", {firstName:firstName, price:price})
+        const response = await axios.post(`${server}create-checkout-session`, {firstName:firstName, price:price})
         // ('/create-checkout-session', { method: 'POST' });
     
         // console.log(response)
@@ -93,7 +91,7 @@ function Booking( {helperId, firstName, lastName, dateTime, price} ) {
             <p>Checkout</p>
             </button>
 
-            <button onClick = { openDeleteModal }> 
+            <button className = "delete-button" onClick = { openDeleteModal }> 
                 Cancel booking
             </button>
 

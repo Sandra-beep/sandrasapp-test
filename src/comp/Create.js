@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {server} from "./config";
+
 
 const isAdmin = true;
 const isHelper = true;
@@ -34,7 +36,7 @@ const Create = ()=> {
     useEffect( ()=> { //läser från localstorage
         const email = localStorage.getItem("email");
         const fetchData = async ()=> {
-            const response = await axios.get(`http://localhost:1337/users?email=${email}`)
+            const response = await axios.get(`${server}users?email=${email}`)
             setUserId(response.data[0].id);
             setFirstName(response.data[0].first_name);
             setLastName(response.data[0].last_name);
@@ -57,8 +59,10 @@ const Create = ()=> {
 
     function onHandleSubmit(event) {
         event.preventDefault(); //förhindrar att sidan laddar om
-        console.log(userId)
-        axios.post("http://localhost:1337/helpers", {
+        
+        // console.log(userId);
+        
+        axios.post(`${server}helpers`, {
             user_id:userId,
             first_name:firstName, //från state
             last_name:lastName, //från state
@@ -78,7 +82,7 @@ const Create = ()=> {
             data.append("field", "profile_image") //vilken field?
             
             // axios för att ladda upp bilden/bilddatan i media library i strapi
-            axios.post("http://localhost:1337/upload", data)
+            axios.post(`${server}upload`, data)
             
 
             .then( e=> console.log(e) )
@@ -95,7 +99,7 @@ const Create = ()=> {
 
         <>
 
-        { isAdmin &&         ( // isLoggedIn funkade inte
+        { isAdmin &&   ( 
 
             <form className="create-form" onSubmit = { onHandleSubmit } >
             

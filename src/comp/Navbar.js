@@ -4,11 +4,10 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 
-    const [userId, setUserId] = useState();
+    const [userId, setUserId] = useState(localStorage.getItem("userId"));
 
     useEffect(  ()=> {
-        const getUserId = localStorage.getItem("userId");
-        setUserId(getUserId);
+        setUserId(userId);
   }, [])
 
     return (
@@ -31,6 +30,7 @@ const Navbar = () => {
             )
             :
             (
+
             <nav className = "navbar">
             <h1>Web Studdy Buddy</h1>
             <div className = "links">

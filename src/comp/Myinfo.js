@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Modal from "react-modal";
 import { useHistory } from 'react-router-dom';
+import {server} from "./config";
 
 
 
@@ -41,7 +42,7 @@ function MyInfo(props) {
     useEffect(  ()=> {
         
         const fetchUser = async ()=> { 
-            const response = await axios.get(`http://localhost:1337/users?id=${userId}`)
+            const response = await axios.get(`${server}users?id=${userId}`)
 
             setFirstName(response.data[0].first_name);
             setLastName(response.data[0].last_name);
@@ -69,9 +70,9 @@ function MyInfo(props) {
   function editProfile(event){
     event.preventDefault();
 
-    console.log(editInfo.firstname);
+    // console.log(editInfo.firstname);
 
-    const editProfileCard = async()=>{ //om isHelper && isRegularUser, kan man ändra sin info
+    const editProfileCard = ()=>{ //om isHelper && isRegularUser, kan man ändra sin info
         axios.put(`http://localhost:1337/users/${userId}`,{  
             first_name:editInfo.firstname,
             last_name:editInfo.lastname,
@@ -79,10 +80,13 @@ function MyInfo(props) {
         }
         
         )
-        .then(
-            localStorage.setItem("email", editInfo.email),
-            closeEditModal(),
+        .then( (res)=> {
+
+        console.log(res);
+            localStorage.setItem("email", editInfo.email)
+            closeEditModal()
             window.location.reload()
+        }
         ).catch(err => console.log("err", err))
 
         }
@@ -101,8 +105,6 @@ function MyInfo(props) {
     
         console.log(editInfo);
     }
-
-
 
 
     const[deleteStatus, setDeleteStatus] = useState(false);
@@ -140,13 +142,13 @@ function MyInfo(props) {
             <p>My email: {email} </p>
 
                     <button onClick = { openEditModal }>
-                        Update
+                        Change
                     </button>
 
                     <button className ="delete-button" onClick = { openDeleteModal }> 
                         Delete Account
                     </button>
-            </div>
+        </div>
 
         <Modal
           isOpen = { editStatus }
@@ -180,7 +182,6 @@ function MyInfo(props) {
                 name = "email"
                 onChange = { onEditChange }
                 />
-                
                 
           <button type ="submit" className="">Yes, save new info!</button>
           <button className="" onClick={closeEditModal}>No, I'm good!</button>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, {useState} from 'react';
-
+import {server} from "./config";
 
 
 function UploadFile() {
@@ -17,7 +17,7 @@ function UploadFile() {
 
         data.append("files", fileData);
 
-        axios.post("http://localhost:1337/upload", {
+        axios.post(`${server}upload`, {
             img: fileData
         })
 

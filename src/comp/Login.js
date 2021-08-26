@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import {server} from "./config";
 
 function Login(){
 
@@ -11,7 +12,7 @@ function Login(){
 
     const [formValues, setFormValues] = useState (initialValues)     //variabel som tar in de tomma värderna först
     // const [username, setUsername] = useState ("")     //variabel med en state som ändrar username
-    const [jwt, setJwt] = useState ("") //varibel med state som ändrar token(jwt=javascript web token)
+    const [jwt, setJwt] = useState (localStorage.getItem("jwt")) //varibel med state som ändrar token(jwt=javascript web token)
     const [error, setError] = useState (" ")
     const history = useHistory();     //varibel som innehåller funktionen useHistory()
 
@@ -22,14 +23,15 @@ function Login(){
     }
 
     useEffect( ()=> {
-        const JWT = localStorage.getItem("jwt")
-        setJwt(JWT);
+        // const JWT = localStorage.getItem("jwt") //samma som rad 14?
+        setJwt(jwt);
 
     },[] )
-
-    function handleOnSubmit(event){ //en axios request för login sidan
+    
+    //en axios request för login sidan
+    function handleOnSubmit(event){ 
         event.preventDefault();        
-        axios.post ('http://localhost:1337/auth/local', {
+        axios.post (`${server}auth/local`, {
         identifier:formValues.email,
         password:formValues.password,
         })
@@ -44,7 +46,7 @@ function Login(){
         history.push ("/") // Ska skickas vidare till Home
         window.location.reload();
         
-    })
+        })
 
         .catch( 
         (error)=> {
@@ -59,6 +61,7 @@ function Login(){
         <div className = "content">
         
                 <div className="login-card">
+
                     <h2>Login</h2>
                     
                     <form className = "" onSubmit = { handleOnSubmit } method = "POST">
@@ -82,11 +85,6 @@ function Login(){
                         autocomplete = "password"
                         required
                         onChange= { handleOnChange }/>
-
-                    {/* <input className="block border border-grey-light w-full p-3 rounded mb-4"
-                        type="password"
-                        name="confirm_password"
-                        placeholder="Confirm password" /> */}
 
                     {/* Error meddelande */}
                     <h5> { error } </h5>

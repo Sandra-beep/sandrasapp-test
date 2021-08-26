@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from "axios"; // för att senare kunna hämta från databasen
 import { useHistory } from 'react-router-dom'; //hämtar historia
+import {server} from "./config";
 
 
 
@@ -29,7 +30,7 @@ function handleOnChange(event) {
 //denna lägger till nytt innehåll i databasen
 function handleOnSubmit(event) {
     event.preventDefault(); //stoppar uppdatering av sidan
-    axios.post('http://localhost:1337/auth/local/register', {
+    axios.post(`${server}auth/local/register`, {
         username:registerValues.username,
         first_name: registerValues.first_name,
         last_name: registerValues.last_name,

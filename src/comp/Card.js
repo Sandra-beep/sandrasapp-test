@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import Modal from "react-modal";
 import axios from "axios";
 import dateFormat from 'dateformat';
+import {server} from "./config";
+
 
 function Card ( { helperId, firstName, lastName, description, image, language, dateTime, price } ){ 
 
@@ -77,7 +79,7 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
 
 
     async function openEditModal(e) {
-        await axios.get(`http://localhost:1337/helpers/${ helperId }`).then(res => setEditInfo(res.data))
+        await axios.get(`${server}helpers/${ helperId }`).then(res => setEditInfo(res.data))
         setEditStatus(true)
     }
     

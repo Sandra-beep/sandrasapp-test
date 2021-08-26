@@ -1,18 +1,22 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import Booking from './Booking';
+import {server} from "./config";
+
+
+// Här ska man kunna se alla bokningar, men vem som är kopplad med vem
 
 function AllBookings() {
 
     const [bookings, setBookings] = useState ([]);
     const [userId, setUserId] = useState(localStorage.getItem("userId"));
-    const [token, setToken] = useState(localStorage.getItem("jwt"));
+    // const [token, setToken] = useState(localStorage.getItem("jwt"));
     
     useEffect( ()=> { //callback
 
 
         const fetchData = async ()=> { //hämta data från API
-            const response = await axios.get(`http://localhost:1337/bookings?user_id.id=${userId}`)
+            const response = await axios.get(`${server}bookings?user_id.id=${userId}`)
             // ,{
             //     headers: {
             //         Authorization: `Bearer ${token}`,
