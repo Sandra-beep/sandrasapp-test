@@ -43,10 +43,15 @@ function Login(){
         
         localStorage.setItem("userId", response.data.user.id); //userId, benämning i localstorage. data.user.id, hämtning i API
         localStorage.setItem("email", response.data.user.email);
-        localStorage.setItem("helperId", response.data.user.helper_id.id)
-        history.push ("/home") // Ska skickas vidare till Home
-       window.location.reload();
+        // if(response.data.user.helper_id.id !== undefined)
+        // {localStorage.setItem("helperId", response.data.user.helper_id.id)
+        // }
+        // else {
+            history.push ("/home") // Ska skickas vidare till Home
+            window.location.reload();
         
+       
+        //Window.location.reload()
         })
 
         .catch( 
