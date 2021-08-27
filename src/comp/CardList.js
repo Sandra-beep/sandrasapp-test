@@ -7,6 +7,7 @@ function CardList() {
 
     const [helpers, setHelpers] = useState([]);
     const [loadPage, setLoadPage] = useState(4); //(2) typ av default-värde
+    const [isHelper, setIsHelper] = useState(false);
 
     useEffect(  ()=> {
         async function fetch(){

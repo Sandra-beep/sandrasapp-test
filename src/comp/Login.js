@@ -40,17 +40,18 @@ function Login(){
         .then (response => { //Sparar allt i localstorage
         console.log("response", response)
         localStorage.setItem("jwt", response.data.jwt);
-        localStorage.setItem("helperId", response.data.user.helper_id.id)
+        
         localStorage.setItem("userId", response.data.user.id); //userId, benämning i localstorage. data.user.id, hämtning i API
-        localStorage.setItem("email", formValues.email);
+        localStorage.setItem("email", response.data.user.email);
+        localStorage.setItem("helperId", response.data.user.helper_id.id)
         history.push ("/home") // Ska skickas vidare till Home
-        window.location.reload();
+       window.location.reload();
         
         })
 
         .catch( 
         (error)=> {
-            setError ("Ops! Something went wrong, try again!")
+            setError ("Ops! Something went wrong, try again!", error)
         })
 
     }

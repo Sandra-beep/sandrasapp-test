@@ -164,7 +164,6 @@ button:hover
   background-color: rgb(25, 180, 231);
   border:white 1px solid;
   font-family: 'Quicksand', sans-serif;
-  box-shadow: 2px 5px 7px #e7e7e7;
 
   -webkit-transition: background-color 1s ease-out;
   -moz-transition: background-color 1s ease-out;

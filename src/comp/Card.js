@@ -43,6 +43,8 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
     const [disableStatus, setDisableStatus] = useState(false);
     const [confirmText, setConfirmText] = useState("Confirm");
 
+    const isLoggedInHelperId = localStorage.getItem("helperId")
+
     useEffect( ()=> { //Efter render
 
         setUserId(userId)
@@ -126,7 +128,7 @@ function Card ( { helperId, firstName, lastName, description, image, language, d
 
 
     async function deleteCard() { //om isHelper && isRegularUser, kan man ta bort en card
-    await axios.delete(`http://localhost:1337/helpers/${helperId}`,
+    await axios.delete(`${server}helpers/${helperId}`,
     
     { headers: {
         Authorization: `Bearer ${token}`,
@@ -160,8 +162,8 @@ return (
             <p>{dateFormat(dateTime, "DDDD, dd mmm yyyy, HH.MM")} o'clock</p>
 
             
-            <p><b> Price: </b> { price } SEK</p>
-
+            <p><b> Price: </b> { price }  SEK</p>
+            { (isLoggedInHelperId == helperId) ? ( 
             <div className = "card-buttons">            
                 <button onClick = { openBookModal }> 
                     Book
@@ -176,8 +178,16 @@ return (
                     Delete
                 </button>
             </div>
-            
+                ):(
+            <div>
+                <button onClick = { openBookModal }> 
+                    Book
+                </button>
+            </div>
+            )
+        }
         </div>
+       
 
         
         <Modal
