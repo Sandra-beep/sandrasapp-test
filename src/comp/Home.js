@@ -2,14 +2,13 @@
 import CardList from './CardList';
 import UserGreeting from './UserGreeting';
 
-function Home(){
+function Home() {
 
-    return ( 
+    return (
 
-        <div className = "main">
+        <div className="main">
 
             <UserGreeting />
-            
 
             <h2>All Helpers</h2>
             <hr />
@@ -22,5 +21,5 @@ function Home(){
 
 }
 
- 
+
 export default Home;

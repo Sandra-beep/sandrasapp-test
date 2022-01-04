@@ -6,41 +6,41 @@ const Navbar = () => {
 
     const [userId, setUserId] = useState(localStorage.getItem("userId"));
 
-    useEffect(  ()=> {
+    useEffect(() => {
         setUserId(userId);
-  }, [])
+    }, [])
 
     return (
-    
+
         <>
 
-        { userId ? 
-            (
-            <nav className = "navbar">
-            <h1>Web Studdy Buddy</h1>
-            <div className = "links">
-                <Link to = "/home">Home</Link>
-                <Link to = "/create">Create</Link>
-                <Link to = "/bookings">My Bookings</Link>
-                <Link to = "/myinfo">My Info</Link>
-                <Link to = "/logout">Log out</Link>
-            </div>
-            </nav>
+            {userId ?
+                (
+                    <nav className="navbar">
+                        <h1>Web Studdy Buddy</h1>
+                        <div className="links">
+                            <Link to="/home">Home</Link>
+                            <Link to="/create">Create</Link>
+                            <Link to="/bookings">My Bookings</Link>
+                            <Link to="/myinfo">My Info</Link>
+                            <Link to="/logout">Log out</Link>
+                        </div>
+                    </nav>
 
-            )
-            :
-            (
+                )
+                :
+                (
 
-            <nav className = "navbar">
-            <h1>Web Studdy Buddy</h1>
-            <div className = "links">
-                <Link to = "/login">Login</Link>
-                <Link to = "/signup">Signup</Link>
-            </div>
-            </nav>
-            )
-        }
-    </>
+                    <nav className="navbar">
+                        <h1>Web Studdy Buddy</h1>
+                        <div className="links">
+                            <Link to="/login">Login</Link>
+                            <Link to="/signup">Signup</Link>
+                        </div>
+                    </nav>
+                )
+            }
+        </>
     )
 }
 
