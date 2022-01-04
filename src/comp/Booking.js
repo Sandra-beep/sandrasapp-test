@@ -3,7 +3,7 @@ import axios from 'axios';
 import Modal from "react-modal";
 import dateFormat from 'dateformat';
 import { loadStripe } from '@stripe/stripe-js';
-import { server } from "./config";
+import { server } from './config';
 
 
 function Booking({ helperId, firstName, lastName, dateTime, price }) {
