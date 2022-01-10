@@ -19,11 +19,10 @@ function Login() {
 
     function handleOnChange(event) {
         setFormValues({ ...formValues, [event.target.name]: event.target.value })
-
     }
 
     useEffect(() => {
-        // const JWT = localStorage.getItem("jwt") //samma som rad 14?
+        // const JWT = localStorage.getItem("jwt") //samma som rad 15?
         setJwt(jwt);
 
     }, [])
@@ -40,15 +39,16 @@ function Login() {
             .then(response => { //Sparar allt i localstorage
                 console.log("response", response)
                 localStorage.setItem("jwt", response.data.jwt);
-
+                localStorage.setItem("firstname", response.data.user.first_name);
                 localStorage.setItem("userId", response.data.user.id); //userId, benämning i localstorage. data.user.id, hämtning i API
                 localStorage.setItem("email", response.data.user.email);
+
                 if (response.data.user.helper_id.id !== undefined) {
                     localStorage.setItem("helperId", response.data.user.helper_id.id)
                 }
                 else {
 
-                    // Ska skickas vidare till Home
+                    // Om inloggningen fungerar, ska man skickas vidare till Home
 
                     history.push("/home")
                     window.location.reload();

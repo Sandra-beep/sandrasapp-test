@@ -61,7 +61,6 @@ function Signup() {
 
                 <div>
 
-
                     <form
                         className="signup-card"
                         x-data="{password: '',password_confirm: ''}"

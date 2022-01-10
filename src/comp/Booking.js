@@ -8,6 +8,7 @@ import { server } from './config';
 
 function Booking({ helperId, firstName, lastName, dateTime, price }) {
 
+  //utseende för Modal
   const customStyles = {
     content: {
       background: "lightgrey",
@@ -21,6 +22,7 @@ function Booking({ helperId, firstName, lastName, dateTime, price }) {
       transform: 'translate(-50%, -50%)'
     }
   };
+
   const token = localStorage.getItem("jwt");
   const [deleteStatus, setDeleteStatus] = useState(false);
 
@@ -48,6 +50,7 @@ function Booking({ helperId, firstName, lastName, dateTime, price }) {
   }
 
 
+  //Man ska kunna betala med Stripe
 
   const stripePromise = loadStripe('pk_test_51Ix6McCzY61MZmcNxfvhcuoFfyjdYviQibCbVB6h7TG5smVSFev43rB9Bhwrp8YzPoM4HqzG8SVJxnSCDAwHURvL00pYmIulO1');
 
@@ -108,7 +111,7 @@ function Booking({ helperId, firstName, lastName, dateTime, price }) {
       >
 
         <h2>Delete session</h2>
-        <h3>Do you want delete this session?</h3>
+        <h3>{firstName}, do you want delete this session?</h3>
         <button className="" onClick={deleteSession}>Yes</button>
         <button className="" onClick={closeDeleteModal}>No</button>
       </Modal>

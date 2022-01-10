@@ -136,7 +136,7 @@ function MyInfo(props) {
     return (
         <>
             <div className="create-form">
-                <h2>I want to update my info!</h2>
+                <h2>Hello {firstName}, here you can update your info!</h2>
                 <p>My name: {firstName} </p>
                 <p>My lastname: {lastName} </p>
                 <p>My email: {email} </p>
@@ -159,7 +159,7 @@ function MyInfo(props) {
             >
 
                 <h2>Edit Profile</h2>
-                <h3>Do you want to update your profile? </h3>
+                <h3>{firstName}, do you want to update your profile? </h3>
                 <form method="post" className="" onSubmit={editProfile}>
 
                     <input type="text"

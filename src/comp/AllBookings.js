@@ -1,10 +1,9 @@
+// Här ska man kunna se alla bokningar,  vem som är kopplad med vem
+
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Booking from './Booking';
 import { server } from "./config";
-
-
-// Här ska man kunna se alla bokningar, men vem som är kopplad med vem
 
 function AllBookings() {
 

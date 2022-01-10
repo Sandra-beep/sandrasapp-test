@@ -40,6 +40,11 @@ hr {
   width: auto;
 }
 
+.intro {
+  text-align: center;
+
+}
+
 /* ----------------Navbar-----------------*/
 
 .navbar {

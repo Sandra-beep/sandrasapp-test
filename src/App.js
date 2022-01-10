@@ -12,19 +12,19 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 function App() {
 
   return (
-    <Router>
+    <Router forceRefresh={true}>
       <div className="App">
         <Navbar />
         <div className="content">
           <Switch>
-            <Route exact path = "/">    <Login />      </Route>
-            <Route exact path = "/home">    <Home />      </Route>
-            <Route path = "/create">    <Create />    </Route>
-            <Route path = "/bookings">  <Bookings />  </Route>
-            <Route path = "/myinfo">    <MyInfo />    </Route>
-            <Route path = "/login">     <Login />     </Route>
-            <Route path = "/logout">    <Logout />    </Route>
-            <Route path = "/signup">    <Signup />    </Route>
+            <Route exact path = "/">      <Login />     </Route>
+            <Route exact path = "/home">  <Home />      </Route>
+            <Route path = "/create">      <Create />    </Route>
+            <Route path = "/bookings">    <Bookings />  </Route>
+            <Route path = "/myinfo">      <MyInfo />    </Route>
+            <Route path = "/login">       <Login />     </Route>
+            <Route path = "/logout">      <Logout />    </Route>
+            <Route path = "/signup">      <Signup />    </Route>
           </Switch>
         </div>
         <Footer />
