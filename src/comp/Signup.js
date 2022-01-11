@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios"; // för att senare kunna hämta från databasen
-import { useHistory } from 'react-router-dom'; //hämtar historia
+import { useNavigate } from 'react-router-dom';
 import { server } from "./config";
 
 
@@ -19,7 +19,8 @@ function Signup() {
     // const [username, setUsername] = useState(" ");
     const [loggedIn, SetLoggedIn] = useState(false); //kollar om redan är registrerad?
     const [error, setError] = useState(" ");
-    const history = useHistory(); //en variabel innehållandes en funktion
+    // const history = useHistory(); //en variabel innehållandes en funktion
+    const navigate = useNavigate()
 
     //denna ändrar innehållet
     function handleOnChange(event) {
@@ -41,8 +42,8 @@ function Signup() {
             .then((event) => {
 
                 SetLoggedIn(true)
-                history.push("/login")//minns information från signup och skickar en vidare till login-sidan
-
+                // history.push("/login")//minns information från signup och skickar en vidare till login-sidan
+                navigate("/login")
                 console.log(event)
 
             })

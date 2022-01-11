@@ -7,16 +7,19 @@ import Login from './comp/Login';
 import Signup from './comp/Signup';
 import Logout from './comp/Logout';
 import Footer from './comp/Footer';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
 
   return (
-    <Router forceRefresh={true}>
+    <Router>
       <div className="App">
         <Navbar />
         <div className="content">
-          <Switch>
+          <Routes> {/* istället för <Switch> */}
+          {/* <Route exact path = "/"      component = {Login} /> */}
+          <Route exact path="/login" component={Login}/>
+          
             <Route exact path = "/">      <Login />     </Route>
             <Route exact path = "/home">  <Home />      </Route>
             <Route path = "/create">      <Create />    </Route>
@@ -25,7 +28,7 @@ function App() {
             <Route path = "/login">       <Login />     </Route>
             <Route path = "/logout">      <Logout />    </Route>
             <Route path = "/signup">      <Signup />    </Route>
-          </Switch>
+          </Routes>
         </div>
         <Footer />
       </div>

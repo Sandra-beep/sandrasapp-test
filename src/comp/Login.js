@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { server } from "./config";
 
 function Login() {
@@ -11,10 +11,10 @@ function Login() {
     }
 
     const [formValues, setFormValues] = useState(initialValues)     //variabel som tar in de tomma värderna först
-    // const [username, setUsername] = useState ("")     //variabel med en state som ändrar username
     const [jwt, setJwt] = useState(localStorage.getItem("jwt")) //varibel med state som ändrar token(jwt=javascript web token)
     const [error, setError] = useState(" ")
-    const history = useHistory();     //varibel som innehåller funktionen useHistory()
+    // const history = useHistory();     //varibel som innehåller funktionen useHistory()
+    const navigate = useNavigate()
 
 
     function handleOnChange(event) {
@@ -22,7 +22,7 @@ function Login() {
     }
 
     useEffect(() => {
-        // const JWT = localStorage.getItem("jwt") //samma som rad 15?
+        // const JWT = localStorage.getItem("jwt") //samma som rad 15
         setJwt(jwt);
 
     }, [])
@@ -46,11 +46,9 @@ function Login() {
                 if (response.data.user.helper_id.id !== undefined) {
                     localStorage.setItem("helperId", response.data.user.helper_id.id)
                 }
-                else {
+                else { // annars skickas vidare till Home
 
-                    // Om inloggningen fungerar, ska man skickas vidare till Home
-
-                    history.push("/home")
+                    navigate("/home");
                     window.location.reload();
 
                 }
@@ -63,65 +61,61 @@ function Login() {
 
     }
 
-    return ( //Login form med tailwind tillägg
-        <>
+    return ( //Login form med tailwind tillägg test
 
-            <div className="content">
+        <div className="content">
 
-                <div className="login-card">
+            <div className="login-card">
 
-                    <h2>Login</h2>
+                <h2>Login</h2>
 
-                    <form className="" onSubmit={handleOnSubmit} method="POST">
+                <form className="" onSubmit={handleOnSubmit} method="POST">
 
-                        <input type="hidden" name="remember" value="true" />
+                    <input type="hidden" name="remember" value="true" />
 
-                        <input className="block border border-grey-light w-full p-3 rounded mb-4"
-                            type="email"
-                            name="email"
-                            placeholder="Email"
-                            value={formValues.email}
-                            autocomplete="email"
-                            required
-                            onChange={handleOnChange} />
+                    <input className="block border border-grey-light w-full p-3 rounded mb-4"
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        value={formValues.email}
+                        autocomplete="email"
+                        required
+                        onChange={handleOnChange} />
 
-                        <input className="block border border-grey-light w-full p-3 rounded mb-4"
-                            type="password"
-                            name="password"
-                            placeholder="Password"
-                            value={formValues.password}
-                            autocomplete="password"
-                            required
-                            onChange={handleOnChange} />
+                    <input className="block border border-grey-light w-full p-3 rounded mb-4"
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        value={formValues.password}
+                        autocomplete="password"
+                        required
+                        onChange={handleOnChange} />
 
-                        {/* Error meddelande */}
-                        <h5> {error} </h5>
+                    {/* Error meddelande */}
+                    <h5> {error} </h5>
 
-                        <button type="submit">Login in</button>
-                    </form>
+                    <button type="submit">Login in</button>
+                </form>
 
-                    <div className="login-links">
+                <div className="login-links">
 
-                        <div className="">
-                            Don't have an account yet?
-                            <a className="" href="../signup/">
-                                <p>Sign up here</p>
-                            </a>
-                        </div>
-
-
-                        <div className="">
-                            Forgot your password?  We got you!
-                            <a className="" href="../forgot-password/">
-                                <p>Redirect here</p>
-                            </a>
-                        </div>
-
+                    <div className="">
+                        Don't have an account yet?
+                        <a className="" href="../signup/">
+                            <p>Sign up here</p>
+                        </a>
                     </div>
+
+                    <div className="">
+                        Forgot your password?  We got you!
+                        <a className="" href="../forgot-password/">
+                            <p>Redirect here</p>
+                        </a>
+                    </div>
+
                 </div>
             </div>
-
-        </>
+        </div>
     )
 
 }

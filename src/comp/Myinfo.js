@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from "react-modal";
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { server } from "./config";
 
 function MyInfo(props) {
@@ -21,13 +21,15 @@ function MyInfo(props) {
     };
 
 
-    const history = useHistory();     //varibel som innehåller funktionen useHistory()
+
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
     const [editStatus, setEditStatus] = useState(false); //editisopen
     const email = localStorage.getItem("email");
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("jwt");
+    // const history = useHistory();     //varibel som innehåller funktionen useHistory()
+    const navigate = useNavigate()
 
 
     const intialValues = {
@@ -52,7 +54,6 @@ function MyInfo(props) {
         fetchUser();
 
     }, [])
-
 
 
 
@@ -85,6 +86,7 @@ function MyInfo(props) {
                     closeEditModal()
                     window.location.reload()
                 }
+
                 ).catch(err => console.log("err", err))
 
         }
@@ -97,6 +99,7 @@ function MyInfo(props) {
 
 
     const onEditChange = ({ target }) => {
+
         const { name, value } = target;
 
         setEditInfo({ ...editInfo, [name]: value })
@@ -128,7 +131,7 @@ function MyInfo(props) {
             .then(
                 closeDeleteModal(),
                 localStorage.clear(),
-                history.push("/signup")
+                navigate("/signup")
             )
     }
 
