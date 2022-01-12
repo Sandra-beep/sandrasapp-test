@@ -21,7 +21,6 @@ function MyInfo(props) {
     };
 
 
-
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
     const [editStatus, setEditStatus] = useState(false); //editisopen
@@ -119,7 +118,7 @@ function MyInfo(props) {
         setDeleteStatus(false);
     }
 
-    async function deleteProfile() { //om isHelper && isRegularUser, kan man ta bort en card
+    async function deleteProfile() { //testa sen: om isHelper && isRegularUser, kan man ta bort en card
         await axios.delete(`http://localhost:1337/users/${userId}`,
 
             {

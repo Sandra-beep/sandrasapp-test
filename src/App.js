@@ -17,14 +17,14 @@ function App() {
         <Navbar />
         <div className="content">
           <Routes> {/* istället för <Switch> */}
-          <Route exact path = "/"      element = {Login} />          
-            <Route exact path = "/home"  element = {Home} />
-            <Route path = "/create">      <Create />    </Route>
-            <Route path = "/bookings">    <Bookings />  </Route>
-            <Route path = "/myinfo">      <MyInfo />    </Route>
-            <Route path = "/login">       <Login />     </Route>
-            <Route path = "/logout">      <Logout />    </Route>
-            <Route path = "/signup">      <Signup />    </Route>
+            <Route path="/login"      element={<Login />} />
+            <Route path="/home"       element={<Home />} />
+            <Route path="/create"     element={<Create />} />
+            <Route path="/bookings"   element={<Bookings />}  />
+            <Route path="/myinfo"     element={<MyInfo />}   />
+            <Route path="/login"      element={<Login />}     />
+            <Route path="/logout"     element={<Logout />}    />
+            <Route path="/signup"     element={<Signup />}    />
           </Routes>
         </div>
         <Footer />

@@ -14,8 +14,6 @@ function Login() {
     const [jwt, setJwt] = useState(localStorage.getItem("jwt")) //varibel med state som ändrar token(jwt=javascript web token)
     const [error, setError] = useState(" ")
     const navigate = useNavigate()
-    // const history = useHistory();     //varibel som innehåller funktionen useHistory()
-
 
 
     function handleOnChange(event) {
@@ -44,15 +42,18 @@ function Login() {
                 localStorage.setItem("userId", response.data.user.id); //userId, benämning i localstorage. data.user.id, hämtning i API
                 localStorage.setItem("email", response.data.user.email);
 
-                if (response.data.user.helper_id.id !== undefined) {
-                    localStorage.setItem("helperId", response.data.user.helper_id.id)
-                }
-                else { // annars skickas vidare till Home
+                navigate("/home");
+                window.location.reload();
 
-                    navigate("/home");
-                    window.location.reload();
+                // if (response.data.user.helper_id.id !== undefined) {
+                //     localStorage.setItem("helperId", response.data.user.helper_id.id)
+                // }
+                // else { // annars skickas vidare till Home
 
-                }
+                //     navigate("/home");
+                //     window.location.reload();
+
+                // }
             })
 
             .catch(
