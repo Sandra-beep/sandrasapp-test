@@ -27,9 +27,7 @@ const Navbar = () => {
                         </div>
                     </nav>
 
-                )
-                :
-                (
+                ):(
 
                     <nav className="navbar">
                         <h1>Web Studdy Buddy</h1>

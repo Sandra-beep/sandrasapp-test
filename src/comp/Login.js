@@ -13,8 +13,9 @@ function Login() {
     const [formValues, setFormValues] = useState(initialValues)     //variabel som tar in de tomma värderna först
     const [jwt, setJwt] = useState(localStorage.getItem("jwt")) //varibel med state som ändrar token(jwt=javascript web token)
     const [error, setError] = useState(" ")
-    // const history = useHistory();     //varibel som innehåller funktionen useHistory()
     const navigate = useNavigate()
+    // const history = useHistory();     //varibel som innehåller funktionen useHistory()
+
 
 
     function handleOnChange(event) {

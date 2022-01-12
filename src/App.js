@@ -17,11 +17,8 @@ function App() {
         <Navbar />
         <div className="content">
           <Routes> {/* istället för <Switch> */}
-          {/* <Route exact path = "/"      component = {Login} /> */}
-          <Route exact path="/login" component={Login}/>
-          
-            <Route exact path = "/">      <Login />     </Route>
-            <Route exact path = "/home">  <Home />      </Route>
+          <Route exact path = "/"      element = {Login} />          
+            <Route exact path = "/home"  element = {Home} />
             <Route path = "/create">      <Create />    </Route>
             <Route path = "/bookings">    <Bookings />  </Route>
             <Route path = "/myinfo">      <MyInfo />    </Route>
