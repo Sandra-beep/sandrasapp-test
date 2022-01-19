@@ -45,17 +45,17 @@ function Booking({ helperId, firstName, lastName, dateTime, price }) {
     )
       .then(
         closeDeleteModal(),
-        window.location.reload()
+        window.location.reload() //laddar om sidan efter att carden är borttagen
       )
   }
 
 
-  //Man ska kunna betala med Stripe
+  //STRIPE 
 
   const stripePromise = loadStripe('pk_test_51Ix6McCzY61MZmcNxfvhcuoFfyjdYviQibCbVB6h7TG5smVSFev43rB9Bhwrp8YzPoM4HqzG8SVJxnSCDAwHURvL00pYmIulO1');
 
+  //När man trycker på checkout button
   const handleClick = async (event) => { //vart ska event ta vägen?
-
 
     // ------------- Get Stripe.js instance -------------
     const stripe = await stripePromise;
@@ -63,11 +63,9 @@ function Booking({ helperId, firstName, lastName, dateTime, price }) {
     // Call your backend to create the Checkout Session
     const response = await axios.post(`${server}create-checkout-session`, { firstName: firstName, price: price })
     // ('/create-checkout-session', { method: 'POST' });
-
     // console.log(response)
 
     const sessionId = response.data.id
-
     // console.log(sessionId)
 
     // When the customer clicks on the button, redirect them to Checkout.

@@ -17,11 +17,11 @@ function App() {
         <Navbar />
         <div className="content">
           <Routes> {/* istället för <Switch> */}
-            <Route path="/login"      element={<Login />} />
-            <Route path="/home"       element={<Home />} />
-            <Route path="/create"     element={<Create />} />
+            <Route path="/login"      element={<Login />}     />
+            <Route path="/home"       element={<Home />}      />
+            <Route path="/create"     element={<Create />}    />
             <Route path="/bookings"   element={<Bookings />}  />
-            <Route path="/myinfo"     element={<MyInfo />}   />
+            <Route path="/myinfo"     element={<MyInfo />}    />
             <Route path="/login"      element={<Login />}     />
             <Route path="/logout"     element={<Logout />}    />
             <Route path="/signup"     element={<Signup />}    />

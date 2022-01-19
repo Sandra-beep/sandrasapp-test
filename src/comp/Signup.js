@@ -42,7 +42,6 @@ function Signup() {
             .then((event) => {
 
                 SetLoggedIn(true)
-                // history.push("/login")//minns information från signup och skickar en vidare till login-sidan
                 navigate("/login")
                 console.log(event)
 
