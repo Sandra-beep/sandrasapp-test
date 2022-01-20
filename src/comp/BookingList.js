@@ -32,14 +32,14 @@ function BookingList() {
 
     }, [])
 
-    useEffect(() => {
+    useEffect(() => { //om du INTE är en helper så ska endast dina helpers synas i sidan
         if (!loggedInHelper) return
 
         const getStudents = async () => {
             const response = await axios.get(`${server}bookings?helper_id=${loggedInHelper}`)
             setStudents(...students, response.data)
         }
-
+        //Annars visas studenter
         getStudents()
 
     }, [])
@@ -75,9 +75,9 @@ function BookingList() {
                         )
                     })
                     }
-
+                    {/* Om det finns mer än 0 bokningar visas listningen, tom div för det funkar annars inte. Annars visas meddelandet */}
                     {bookings.length > 0 ?
-                        (<div></div>) : (<p>You haven't asked for help (yet!)</p>)
+                        (<div></div>) : (<p className='message'>You haven't asked for help (yet!)</p>)
                     }
 
                 </div>
@@ -89,7 +89,7 @@ function BookingList() {
                 <div className="list">
                     <h3>My Students</h3>
 
-                    {students.map((booking) => { //listar ut alla bookningar
+                    {students.map((booking) => { //listar ut alla bokningar
 
                         return (
                             <>
@@ -111,9 +111,9 @@ function BookingList() {
                     })
                     }
 
-                    {students.length === 0 &&
+                    {students.length === 0 &&   //Om inga bokningar, visas meddelandet
 
-                        (<p>No one have asked for your help (yet!)</p>)
+                        (<p className='message'>No one have asked for your help (yet!)</p>)
 
                     }
 

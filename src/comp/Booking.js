@@ -3,7 +3,7 @@ import axios from 'axios';
 import Modal from "react-modal";
 import dateFormat from 'dateformat';
 import { loadStripe } from '@stripe/stripe-js';
-import { server } from './config';
+import { stripeServer } from './config';
 
 
 function Booking({ helperId, firstName, lastName, dateTime, price }) {
@@ -35,7 +35,7 @@ function Booking({ helperId, firstName, lastName, dateTime, price }) {
   }
 
   async function deleteSession() { //om isHelper && isRegularUser, kan man ta bort en card
-    await axios.delete(`${server}bookings/${helperId}`,
+    await axios.delete(`${stripeServer}bookings/${helperId}`,
 
       {
         headers: {
@@ -61,7 +61,12 @@ function Booking({ helperId, firstName, lastName, dateTime, price }) {
     const stripe = await stripePromise;
 
     // Call your backend to create the Checkout Session
-    const response = await axios.post(`${server}create-checkout-session`, { firstName: firstName, price: price })
+    const response = await axios.post(`${stripeServer}create-checkout-session`,
+      {
+        firstName: firstName,
+        price: price
+      }
+    )
     // ('/create-checkout-session', { method: 'POST' });
     // console.log(response)
 
@@ -81,7 +86,7 @@ function Booking({ helperId, firstName, lastName, dateTime, price }) {
   };
 
 
-
+  // Hur det ser ut innan man klickar på checkout 
   return (
     <>
       <div className="card" key={helperId} >
@@ -100,7 +105,7 @@ function Booking({ helperId, firstName, lastName, dateTime, price }) {
 
       </div>
 
-      <Modal
+      <Modal //En popup fönster som frågar "Ta bort bokning"
         isOpen={deleteStatus}
         onRequestClose={closeDeleteModal}
         style={customStyles}

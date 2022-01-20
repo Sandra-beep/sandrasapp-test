@@ -152,7 +152,7 @@ function Card({ helperId, firstName, lastName, description, image, language, dat
                         <img src={`http://localhost:1337${image}`} alt="" />
                     </div>
                     <div className="profile-desc">
-                        <h3>{firstName} {lastName}</h3>
+                        <b>{firstName} {lastName}</b>
                         <p>{description}</p>
                         <p><b> Languages/framework: </b></p>
                         <p>{language}</p>
@@ -185,6 +185,15 @@ function Card({ helperId, firstName, lastName, description, image, language, dat
                         <button onClick={openBookModal}>
                             Book
                         </button>
+                        
+                        {/* <button onClick={openEditModal}>
+                            Update
+                        </button>
+
+                        <button className="delete-button"
+                            onClick={openDeleteModal}>
+                            Delete
+                        </button> */}
                     </div>
                 )
                 }
