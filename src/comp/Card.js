@@ -5,8 +5,8 @@ import dateFormat from 'dateformat';
 import { server } from "./config";
 
 
-function Card({ helperId, firstName, lastName, description, image, language, dateTime, price }) {
-
+function Card({ helperId, userID, firstName, lastName, description, image, language, dateTime, price }) {
+    
     const customStyles = {
         content: {
             background: "white",
@@ -38,12 +38,12 @@ function Card({ helperId, firstName, lastName, description, image, language, dat
     const [userId, setUserId] = useState(localStorage.getItem("userId"))
     const [token, setToken] = useState(localStorage.getItem("jwt"));
     const [modalStatus, setModalStatus] = useState(false);
-    const [deleteStatus, setDeleteStatus] = useState(false); //deleteisopen
-    const [editStatus, setEditStatus] = useState(false); //editisopen
+    const [deleteStatus, setDeleteStatus] = useState(false);
+    const [editStatus, setEditStatus] = useState(false);
     const [disableStatus, setDisableStatus] = useState(false);
     const [confirmText, setConfirmText] = useState("Confirm");
 
-    const isLoggedInHelperId = localStorage.getItem("helperId")
+    const isLoggedInHelper = localStorage.getItem("helperId")
 
     useEffect(() => { //Efter render
 
@@ -78,6 +78,7 @@ function Card({ helperId, firstName, lastName, description, image, language, dat
 
     }
 
+    //här hämtar jag helperId
     async function openEditModal(e) {
         await axios.get(`${server}helpers/${helperId}`).then(res => setEditInfo(res.data))
         setEditStatus(true)
@@ -131,17 +132,18 @@ function Card({ helperId, firstName, lastName, description, image, language, dat
         await axios.delete(`${server}helpers/${helperId}`,
 
             {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                }
+                // headers: {
+                //     Authorization: `Bearer ${token}`,
+                // }
             }
         )
-            .then(
+            .then( 
                 closeDeleteModal(),
                 window.location.reload()
             )
     }
-
+            console.log(userID)
+            console.log(userId);
     return (
         <>
 
@@ -152,7 +154,7 @@ function Card({ helperId, firstName, lastName, description, image, language, dat
                         <img src={`http://localhost:1337${image}`} alt="" />
                     </div>
                     <div className="profile-desc">
-                        <b>{firstName} {lastName}</b>
+                        <b className='profile-name'>{firstName} {lastName}</b>
                         <p>{description}</p>
                         <p><b> Languages/framework: </b></p>
                         <p>{language}</p>
@@ -163,29 +165,17 @@ function Card({ helperId, firstName, lastName, description, image, language, dat
                 <p><b> Date & time available: </b></p>
                 <p>{dateFormat(dateTime, "DDDD, dd mmm yyyy, HH.MM")} o'clock</p>
 
-
                 <p><b> Price: </b> {price}  SEK</p>
-                {(isLoggedInHelperId == helperId) ? (
+
+                {/* Om man är en User - Book
+                    Om man är en User och Helper - Man kan inte boka sig själv men Update och Delete eget 
+                    Om man är isLoggedInHelper - boka andra Helpers så länge isLoggedInHelper !== helperId? */}
+                {userID != userId ? (
                     <div className="card-buttons">
                         <button onClick={openBookModal}>
                             Book
                         </button>
 
-                        <button onClick={openEditModal}>
-                            Update
-                        </button>
-
-                        <button className="delete-button"
-                            onClick={openDeleteModal}>
-                            Delete
-                        </button>
-                    </div>
-                ) : (
-                    <div>
-                        <button onClick={openBookModal}>
-                            Book
-                        </button>
-                        
                         {/* <button onClick={openEditModal}>
                             Update
                         </button>
@@ -194,6 +184,21 @@ function Card({ helperId, firstName, lastName, description, image, language, dat
                             onClick={openDeleteModal}>
                             Delete
                         </button> */}
+                    </div>
+                ) : (
+                    <div>
+                        {/* <button onClick={openBookModal}>
+                            Book
+                        </button> */}
+                        
+                        <button onClick={openEditModal}>
+                            Update
+                        </button>
+
+                        <button className="delete-button"
+                            onClick={openDeleteModal}>
+                            Delete
+                        </button>
                     </div>
                 )
                 }

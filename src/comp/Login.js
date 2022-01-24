@@ -34,7 +34,7 @@ function Login() {
             password: formValues.password,
         })
 
-            // Hantering om inloggningen gick igenom
+            // Hantering om inloggningen gick igenom, här sätts items
             .then(response => { //Sparar allt i localstorage
                 console.log("response", response)
                 localStorage.setItem("jwt", response.data.jwt);

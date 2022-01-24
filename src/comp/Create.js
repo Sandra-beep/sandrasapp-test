@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { server } from "./config";
+import { useNavigate } from 'react-router-dom';
 
 
 const isAdmin = true;
@@ -11,6 +12,8 @@ const isRegularUser = true;
 
 
 const Create = () => {
+
+    const navigate = useNavigate();
 
     const initialValues = {
         first_name: "", // hämtas auto från databasen
@@ -31,6 +34,7 @@ const Create = () => {
     const [lastName, setLastName] = useState();
     const [userId, setUserId] = useState();
     const email = localStorage.getItem("email");
+    // const jwt = localStorage.getItem("jwt");
 
 
     useEffect(() => { //läser från localstorage
@@ -40,7 +44,8 @@ const Create = () => {
             setUserId(response.data[0].id);
             setFirstName(response.data[0].first_name);
             setLastName(response.data[0].last_name);
-            console.log(response.data[0].id);
+            // console.log(response.data[0].id);
+
         }
 
         fetchData();
@@ -63,7 +68,7 @@ const Create = () => {
         // console.log(userId);
 
         axios.post(`${server}helpers`, {
-            user_id: userId,
+            userID: userId,
             first_name: firstName, //från state
             last_name: lastName, //från state
             email: formValues.email,
@@ -85,7 +90,10 @@ const Create = () => {
                 axios.post(`${server}upload`, data)
 
 
-                    .then(e => console.log(e))
+                    .then(
+                        navigate("/home"),
+                        window.location.reload(),
+                    )
                 // .catch() (error)=> { console.log(error) }
 
             })

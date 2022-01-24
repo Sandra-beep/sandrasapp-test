@@ -6,14 +6,14 @@ import { server } from "./config";
 function CardList() {
 
     const [helpers, setHelpers] = useState([]);
-    const [loadPage, setLoadPage] = useState(4); //(2) typ av default-värde
+    const [loadPage, setLoadPage] = useState(4); //(4) default-värde, börjar med 4 st cards
     const [isHelper, setIsHelper] = useState(false);
 
     useEffect(() => {
         async function fetch() {
             const response = await axios.get(`${server}helpers?_limit=${loadPage}`)
-            // ("http://localhost:1337/helpers") original utan paginering
-            // `http://localhost:1337/helpers?_limit=${loadpage}` med paginering
+            // `${server}helpers`                       original utan paginering
+            // `${server}helpers?_limit=${loadpage}`    med paginering
             console.log(response.data);
             setHelpers(response.data)
         }
@@ -37,7 +37,8 @@ function CardList() {
         <div className="">
 
             {helpers.map((helper) => { //Här mappar jag ut från API/Strapi
-                return ( // ex email, är det vi skickar på props sen upp i funktionen. {helper.email} är det som hämtas från API  //undersök här !!!
+               console.log(helper);
+               return ( // ex email, är det vi skickar på props sen upp i funktionen. {helper.email} är det som hämtas från API  //undersök här !!!
                     <Card key={helper.id}
                         helperId={helper.id}
                         image={helper.profile_image.formats.thumbnail.url}
@@ -48,7 +49,7 @@ function CardList() {
                         language={helper.language}
                         dateTime={helper.date_time}
                         price={helper.price}
-
+                        userID={helper.userID}
                     />
                 )
             })

@@ -130,6 +130,10 @@ p.message {
   padding-left: 20px;
 }
 
+.profile-name {
+  font-size: 1.2rem;
+}
+
 /* ----------------Forms-----------------*/
 .bookinglist,
 .create-form {
@@ -189,6 +193,7 @@ button:hover {
   border: 1px solid lightgray;
   width: auto;
   padding: 10vw;
+  
 }
 
 /* ----------------Input fields-----------------*/

@@ -16,16 +16,13 @@ function Signup() {
     }
 
     const [registerValues, setRegisterValues] = useState(intialValue)
-    // const [username, setUsername] = useState(" ");
-    const [loggedIn, SetLoggedIn] = useState(false); //kollar om redan är registrerad?
+    const [loggedIn, SetLoggedIn] = useState(false); //kollar om registrerad finns
     const [error, setError] = useState(" ");
-    // const history = useHistory(); //en variabel innehållandes en funktion
-    const navigate = useNavigate()
+    const navigate = useNavigate()     // const history = useHistory(); //en variabel innehållandes en funktion
 
-    //denna ändrar innehållet
-    function handleOnChange(event) {
+    function handleOnChange(event) { //denna ändrar registreringsdata
         setRegisterValues({ ...registerValues, [event.target.name]: event.target.value })
-        //... lägger till sådant som redan är tillagt sedan tidigare
+        //... punkterna lägger till sådant som redan är tillagt sedan tidigare
     }
 
     //denna lägger till nytt innehåll i databasen
@@ -53,7 +50,7 @@ function Signup() {
 
     }
 
-    //villkorssats ifelse, om man är registerad så kan man logga in
+    //kort villkorssats ifelse, om man är registerad så kan man logga in
     return (
         <>
 
