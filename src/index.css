@@ -43,6 +43,7 @@ a {
 hr {
   margin-bottom: 5%;
   width: 100%;
+  border: 1px solid rgb(213, 242, 252);
 }
 
 .intro {
@@ -108,7 +109,8 @@ p.message {
 }
 
 .card:hover {
-  box-shadow: 2px 5px 7px #e7e7e7;
+  box-shadow: 2px 5px 7px rgb(209, 228, 235);
+  ;
 
   -webkit-transition: box-shadow 0.3s ease-out;
   -moz-transition: box-shadow 0.3s ease-out;
@@ -168,6 +170,11 @@ button {
   margin: 1%;
   width: 100%;
   padding: 10px;
+}
+
+.showmore-button {
+  margin: 3vw;
+  width: 82vw;
 }
 
 button:hover {

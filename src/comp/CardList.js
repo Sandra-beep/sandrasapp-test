@@ -56,9 +56,10 @@ function CardList() {
             }
 
             {(helpers.length > loadPage || helpers.length === loadPage) ?
-                <button onClick={loadMore}>Load more Helpers!</button>
+                <button onClick={loadMore} className='showmore-button'>Load more Helpers!</button>
                 :
-                <button onClick={showLess}>Show less Helpers!</button>}
+                <button onClick={showLess} className='showmore-button'>Show less Helpers!</button>
+                }
         </div>
     );
 }
