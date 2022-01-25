@@ -80,6 +80,7 @@ const Create = () => {
         })
 
             .then((response) => { //kod för att hantera bilden
+                localStorage.setItem("helperId", response.data.id)
                 const data = new FormData();
                 data.append("files", fileData)
                 data.append("ref", "helpers") //vilken collection bilden tillhör

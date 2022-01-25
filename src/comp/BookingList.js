@@ -21,11 +21,12 @@ function BookingList() {
             //         Authorization: `Bearer ${token}`,
             //     }
             // })
+            console.log(response)
             setBookings(response.data);
             setUserId(userId);
 
             // console.log(response.data);
-
+   
         }
 
         fetchData();
@@ -38,6 +39,7 @@ function BookingList() {
         const getStudents = async () => {
             const response = await axios.get(`${server}bookings?helper_id=${loggedInHelper}`)
             setStudents(...students, response.data)
+            console.log(response)
         }
         //Annars visas studenter
         getStudents()
@@ -45,7 +47,7 @@ function BookingList() {
     }, [])
 
     // console.log("students", students)
-
+    console.log(students)
     return (
 
         <>
@@ -55,7 +57,8 @@ function BookingList() {
                     <h3>My Helpers</h3>
 
                     {bookings.map((booking) => { //listar ut alla bookningar
-
+                    console.log(booking);
+                    if(booking.helperId!==null){
                         return (
                             <>
                                 {bookings ? (
@@ -73,6 +76,8 @@ function BookingList() {
                                 }
                             </>
                         )
+                    }
+                        
                     })
                     }
                     {/* Om det finns mer än 0 bokningar visas listningen, tom div för det funkar annars inte. Annars visas meddelandet */}
@@ -82,15 +87,13 @@ function BookingList() {
 
                 </div>
 
-
                 <hr />
-
 
                 <div className="list">
                     <h3>My Students</h3>
+                    
 
                     {students.map((booking) => { //listar ut alla bokningar
-
                         return (
                             <>
                                 {students && (

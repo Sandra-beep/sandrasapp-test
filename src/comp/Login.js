@@ -41,9 +41,21 @@ function Login() {
                 localStorage.setItem("firstname", response.data.user.first_name);
                 localStorage.setItem("userId", response.data.user.id); //userId, benämning i localstorage. data.user.id, hämtning i API
                 localStorage.setItem("email", response.data.user.email);
+                
+                const userid = response.data.user.id;
+                const getHelperId = async ()=>{
+                    const helperinfo = await axios.get(`${server}helpers?userID=${userid}`)
+                    console.log(helperinfo)
+                    if(helperinfo.data.length!==0){
 
-                navigate("/home");
-                window.location.reload();
+                        localStorage.setItem("helperId", helperinfo.data[0].id)
+                    }
+                    navigate("/home");
+                    window.location.reload();
+                }
+                getHelperId();
+
+
 
                 // if (response.data.user.helper_id.id !== undefined) {
                 //     localStorage.setItem("helperId", response.data.user.helper_id.id)
