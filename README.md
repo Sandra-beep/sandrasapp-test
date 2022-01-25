@@ -148,41 +148,47 @@ A student that studies web development can through his or her school register to
 ### Tabs in browser
 
 - Sign up
+
 The student starts with a registration with firstname, lastname, email and a password with following password confirmation.
 
 - Log in
+
 The students writes their login information, which is email and password from the registration.
 
 - Create
+
 In the tab Create the student is able to become a "Helper". Which means that you register to be able to help other students. In this stage the student has autocompleted information of their name and email, but will register description of their personality, cost for the favour and lastly a picture.
 
 - Home
+
 The startpage shows all the students that have registered themselves as helpers
 
 - My info
+
 In the tab My info the student can change their firstname, lastname, or more likely, their email.
 
 - Log out
+
 There is also a tab to log out from the page.
 
 ### Components i VS Code
-AllBookings.js / Under dev: As an admin you should be able to see all bookings.
-Booking.js
-BookingList.js
-Card.js
-Cardlist.js
-config.js
-Create.js
-firebase_config.js /Under dev: For a bigger resource for the database.
-Footer.js
-Home.js
-Login.js
-Logout.js
-My Info.js
-Navbar.js
-Signup.js
-UploadFile.js
-UserGreeting.js
+- AllBookings.js / Under dev: As an admin you should be able to see all bookings.
+- Booking.js
+- BookingList.js
+- Card.js
+- Cardlist.js
+- config.js
+- Create.js
+- firebase_config.js /Under dev: For a bigger resource for the database.
+- Footer.js
+- Home.js
+- Login.js
+- Logout.js
+- My Info.js
+- Navbar.js
+- Signup.js
+- UploadFile.js
+- UserGreeting.js
 
 ## Futher development
 The comments or questions are still in the code to remind the head developer where the last change or idea was made for futher development.
