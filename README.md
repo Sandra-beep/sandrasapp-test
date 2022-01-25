@@ -147,23 +147,23 @@ A student that studies web development can through his or her school register to
 
 ### Tabs in browser
 
-- Sign up
-* The student starts with a registration with firstname, lastname, email and a password with following password confirmation.
+-   Sign up
+    * The student starts with a registration with firstname, lastname, email and a password with following password confirmation.
 
-- Log in
-The students writes their login information, which is email and password from the registration.
+-   Log in
+    * The students writes their login information, which is email and password from the registration.
 
-- Create
-* In the tab Create the student is able to become a "Helper". Which means that you register to be able to help other students. In this stage the student has autocompleted information of their name and email, but will register description of their personality, cost for the favour and lastly a picture.
+-   Create
+    * In the tab Create the student is able to become a "Helper". Which means that you register to be able to help other students. In this stage the student has autocompleted information of their name and email, but will register description of their personality, cost for the favour and lastly a picture.
 
-- Home
-* The startpage shows all the students that have registered themselves as helpers
+-   Home
+    * The startpage shows all the students that have registered themselves as helpers
 
-- My info
-* In the tab My info the student can change their firstname, lastname, or more likely, their email.
+-   My info
+    * In the tab My info the student can change their firstname, lastname, or more likely, their email.
 
-- Log out
-* There is also a tab to log out from the page.
+-   Log out
+    * There is also a tab to log out from the page.
 
 ### Components i VS Code
 - AllBookings.js / Under dev: As an admin you should be able to see all bookings.
