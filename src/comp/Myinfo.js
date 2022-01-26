@@ -1,3 +1,4 @@
+//Här kan inloggad student ändra sina uppgifter
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from "react-modal";
@@ -6,7 +7,7 @@ import { server } from "./config";
 
 function MyInfo(props) {
 
-    const customStyles = {
+    const customStyles = { //Stilen för modulen/popupen
         content: {
             background: "lightgrey",
             height: "auto",
@@ -27,10 +28,9 @@ function MyInfo(props) {
     const email = localStorage.getItem("email");
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("jwt");
-    // const history = useHistory();     //varibel som innehåller funktionen useHistory()
     const navigate = useNavigate()
 
-
+    //Börjar med tidigare satta värden
     const intialValues = {
         firstname: firstName,
         lastname: lastName,
@@ -38,19 +38,17 @@ function MyInfo(props) {
 
     }
 
-    useEffect(() => {
+    useEffect(() => {//Hämtar specifik user
 
-        const fetchUser = async () => {
+        const fetchUser = async () => { //async-funktionen
             const response = await axios.get(`${server}users?id=${userId}`)
-
             setFirstName(response.data[0].first_name);
             setLastName(response.data[0].last_name);
 
             // console.log(response.data[0]);
-
         }
 
-        fetchUser();
+        fetchUser(); //Hämtningen av funktionen
 
     }, [])
 
@@ -70,7 +68,7 @@ function MyInfo(props) {
 
         // console.log(editInfo.firstname);
 
-        const editProfileCard = () => { //om isHelper && isRegularUser, kan man ändra sin info
+        const editProfileCard = () => { //Updaterar i Strapi
             axios.put(`http://localhost:1337/users/${userId}`, {
                 first_name: editInfo.firstname,
                 last_name: editInfo.lastname,
@@ -79,8 +77,7 @@ function MyInfo(props) {
 
             )
                 .then((res) => {
-
-                    console.log(res);
+                    // console.log(res);
                     localStorage.setItem("email", editInfo.email)
                     closeEditModal()
                     window.location.reload()
@@ -98,12 +95,10 @@ function MyInfo(props) {
 
 
     const onEditChange = ({ target }) => {
-
         const { name, value } = target;
-
         setEditInfo({ ...editInfo, [name]: value })
 
-        console.log(editInfo);
+        // console.log(editInfo);
     }
 
 
@@ -118,7 +113,8 @@ function MyInfo(props) {
         setDeleteStatus(false);
     }
 
-    async function deleteProfile() { //testa sen: om isHelper && isRegularUser, kan man ta bort en card
+    //Funktion som tar bort en card
+    async function deleteProfile() {
         await axios.delete(`http://localhost:1337/users/${userId}`,
 
             {
@@ -135,7 +131,7 @@ function MyInfo(props) {
     }
 
 
-    return (
+    return ( //Form
         <>
             <div className="create-form">
                 <h2>Hello {firstName}, here you can update your info!</h2>
@@ -152,7 +148,7 @@ function MyInfo(props) {
                 </button>
             </div>
 
-            <Modal
+            <Modal //Öppnar Change modul
                 isOpen={editStatus}
                 onRequestClose={closeEditModal}
                 style={customStyles}
@@ -190,7 +186,7 @@ function MyInfo(props) {
                 </form>
             </Modal>
 
-            <Modal
+            <Modal //Öppnar Delete modul
                 isOpen={deleteStatus}
                 onRequestClose={closeDeleteModal}
                 style={customStyles}

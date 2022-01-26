@@ -1,3 +1,4 @@
+// Här kan en inloggad student skapa en Helper-card
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { server } from "./config";
@@ -5,11 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 const isAdmin = true;
-const isHelper = true;
-const isRegularUser = true;
-
-//isAdmin && isHelper && isRegularUser
-
 
 const Create = () => {
 
@@ -28,14 +24,13 @@ const Create = () => {
     }
 
     const [formValues, setFormValues] = useState(initialValues);
-    //const [error, setError] = useState (" ");
     const [fileData, setFileData] = useState();
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
     const [userId, setUserId] = useState();
     const email = localStorage.getItem("email");
+    //const [error, setError] = useState (" ");
     // const jwt = localStorage.getItem("jwt");
-
 
     useEffect(() => { //läser från localstorage
         const email = localStorage.getItem("email");
@@ -50,15 +45,14 @@ const Create = () => {
 
         fetchData();
 
-
     }, []) //[] för engångsrendering i array
 
 
-    function onHandleChange(event) {
+    function onHandleChange(event) { //Plockar med tidigare värden
         setFormValues({ ...formValues, [event.target.name]: event.target.value })
     }
 
-    function handleOnChangePic(event) {
+    function handleOnChangePic(event) { //Får med profilbild
         setFileData(event.target.files[0])
     }
 
@@ -67,7 +61,7 @@ const Create = () => {
 
         // console.log(userId);
 
-        axios.post(`${server}helpers`, {
+        axios.post(`${server}helpers`, { //lägger till all info
             userID: userId,
             first_name: firstName, //från state
             last_name: lastName, //från state
@@ -79,8 +73,11 @@ const Create = () => {
             price: formValues.price
         })
 
-            .then((response) => { //kod för att hantera bilden
-                localStorage.setItem("helperId", response.data.id)
+            .then((response) => { 
+                //Lägger till helperId i localstorage
+                localStorage.setItem("helperId", response.data.id) 
+                
+                //kod för att hantera bilden
                 const data = new FormData();
                 data.append("files", fileData)
                 data.append("ref", "helpers") //vilken collection bilden tillhör
@@ -92,23 +89,18 @@ const Create = () => {
 
 
                     .then(
-                        navigate("/home"),
-                        window.location.reload(),
+                        navigate("/home"), //När man har tryck "Add me as a Helper" så navigeras man till startsidan
+                        window.location.reload(), //sidan laddas om
                     )
                 // .catch() (error)=> { console.log(error) }
 
             })
 
-
-
     }
 
-
     return (
-
         <>
-
-            {isAdmin && (
+            {isAdmin && ( //Själva form för en Helper card
 
                 <form className="create-form" onSubmit={onHandleSubmit} >
 

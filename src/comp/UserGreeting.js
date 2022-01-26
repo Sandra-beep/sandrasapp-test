@@ -1,3 +1,4 @@
+// Komponent för välkomst-texten
 import React from 'react';
 
 function UserGreeting() {

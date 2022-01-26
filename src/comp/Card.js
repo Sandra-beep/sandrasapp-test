@@ -1,3 +1,4 @@
+// Här är själva mallen för en card
 import React, { useEffect, useState } from 'react';
 import Modal from "react-modal";
 import axios from "axios";
@@ -5,8 +6,8 @@ import dateFormat from 'dateformat';
 import { server } from "./config";
 
 
-function Card({ helperId, userID, firstName, lastName, description, image, language, dateTime, price }) {
-    
+function Card({ helperId, userID, firstName, lastName, description, image, language, dateTime, price }) { //Props som hämtar hem från mappningen
+
     const customStyles = {
         content: {
             background: "white",
@@ -137,13 +138,13 @@ function Card({ helperId, userID, firstName, lastName, description, image, langu
                 // }
             }
         )
-            .then( 
+            .then(
                 closeDeleteModal(),
                 window.location.reload()
             )
     }
-            console.log(userID)
-            console.log(userId);
+    console.log(userID)
+    console.log(userId);
     return (
         <>
 
@@ -190,7 +191,7 @@ function Card({ helperId, userID, firstName, lastName, description, image, langu
                         {/* <button onClick={openBookModal}>
                             Book
                         </button> */}
-                        
+
                         <button onClick={openEditModal}>
                             Update
                         </button>

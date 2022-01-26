@@ -1,3 +1,5 @@
+// Här ska man som inloggad kunna se alla bokningar, vilka som är studenter som har bokat, och vilka studenter har blivit bokade helpers
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import Modal from "react-modal";
@@ -86,8 +88,7 @@ function Booking({ helperId, firstName, lastName, dateTime, price }) {
   };
 
 
-  // Hur det ser ut innan man klickar på checkout 
-  return (
+  return (  // Hur det ser ut innan man klickar på checkout 
     <>
       <div className="card" key={helperId} >
         <p><b>Student:</b> {firstName} {lastName}</p>

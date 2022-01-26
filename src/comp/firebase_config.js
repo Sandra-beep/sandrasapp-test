@@ -1,4 +1,4 @@
-//import
+//Firebase för byte från Strapi, ej klar
 import dotenv from 'dotenv'
 import firebase from 'firebase';
 

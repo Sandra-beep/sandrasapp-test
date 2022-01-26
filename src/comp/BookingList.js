@@ -1,3 +1,4 @@
+// Här ser man alla helpercards, dvs alla helpers som erbjuder hjälp
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Booking from './Booking';
@@ -26,7 +27,7 @@ function BookingList() {
             setUserId(userId);
 
             // console.log(response.data);
-   
+
         }
 
         fetchData();
@@ -57,27 +58,27 @@ function BookingList() {
                     <h3>My Helpers</h3>
 
                     {bookings.map((booking) => { //listar ut alla bookningar
-                    console.log(booking);
-                    if(booking.helperId!==null){
-                        return (
-                            <>
-                                {bookings ? (
-                                    <Booking key={booking.id}
-                                        helperId={booking.id}
-                                        email={booking.email}
-                                        firstName={booking.helper_id.first_name}
-                                        lastName={booking.helper_id.last_name}
-                                        language={booking.language}
-                                        dateTime={booking.helper_id.date_time}
-                                        price={booking.helper_id.price}
+                        console.log(booking);
+                        if (booking.helperId !== null) {
+                            return (
+                                <>
+                                    {bookings ? (
+                                        <Booking key={booking.id}
+                                            helperId={booking.id}
+                                            email={booking.email}
+                                            firstName={booking.helper_id.first_name}
+                                            lastName={booking.helper_id.last_name}
+                                            language={booking.language}
+                                            dateTime={booking.helper_id.date_time}
+                                            price={booking.helper_id.price}
 
-                                    />
-                                ) : (<div></div>)
-                                }
-                            </>
-                        )
-                    }
-                        
+                                        />
+                                    ) : (<div></div>)
+                                    }
+                                </>
+                            )
+                        }
+
                     })
                     }
                     {/* Om det finns mer än 0 bokningar visas listningen, tom div för det funkar annars inte. Annars visas meddelandet */}
@@ -91,7 +92,7 @@ function BookingList() {
 
                 <div className="list">
                     <h3>My Students</h3>
-                    
+
 
                     {students.map((booking) => { //listar ut alla bokningar
                         return (

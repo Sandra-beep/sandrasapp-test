@@ -1,21 +1,19 @@
+//Här ligger logout funktioner
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 function Logout(props) {
 
-    // const history = useHistory();
     const navigate = useNavigate()
 
-    function handleLogout(e) {
+    function handleLogout(e) { //Rensar ls, navigerar tillbaka till login och laddar om sidan
         localStorage.clear();
-        // history.push("/");
         navigate("/login");
-
         window.location.reload();
     }
 
-    return (
+    return ( //Om man klickar logout så frågar systemet om man vill logga ut, eller ska skicka tillbaka till hemsidan
         <>
             <div className="logout-card">
                 <h2>Do you want to log out?</h2>

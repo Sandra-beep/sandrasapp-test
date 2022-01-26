@@ -1,9 +1,11 @@
+//Funktioner för att kunna lägga upp en bild till Strapi
 import axios from 'axios';
 import React, { useState } from 'react';
 import { server } from "./config";
 
 
 function UploadFile() {
+
     const [fileData, setFileData] = useState();
 
     function handleOnChange(event) {
@@ -11,6 +13,7 @@ function UploadFile() {
     }
 
     function FileUpload(event) {
+        
         event.preventDefault();
 
         const data = new FormData();
@@ -20,8 +23,6 @@ function UploadFile() {
         axios.post(`${server}upload`, {
             img: fileData
         })
-
-
     }
 
     return (

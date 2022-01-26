@@ -1,3 +1,4 @@
+//Här registrerar man sig
 import React, { useState } from 'react';
 import axios from "axios"; // för att senare kunna hämta från databasen
 import { useNavigate } from 'react-router-dom';
@@ -12,20 +13,20 @@ function Signup() {
         first_name: "",
         last_name: "",
         email: "",
-        password: "" //Inga mellanslag i "", annars blir det en punkt på weeben
+        password: "" //Inga mellanslag i "", annars blir det en punkt på webben
     }
 
     const [registerValues, setRegisterValues] = useState(intialValue)
     const [loggedIn, SetLoggedIn] = useState(false); //kollar om registrerad finns
     const [error, setError] = useState(" ");
-    const navigate = useNavigate()     // const history = useHistory(); //en variabel innehållandes en funktion
+    const navigate = useNavigate() //En variabel som innehåller en funktion
 
-    function handleOnChange(event) { //denna ändrar registreringsdata
+    function handleOnChange(event) { //Funktion som ändrar registreringsdata
         setRegisterValues({ ...registerValues, [event.target.name]: event.target.value })
         //... punkterna lägger till sådant som redan är tillagt sedan tidigare
     }
 
-    //denna lägger till nytt innehåll i databasen
+    //Funktion som lägger till nytt innehåll i databasen
     function handleOnSubmit(event) {
         event.preventDefault(); //stoppar uppdatering av sidan
         axios.post(`${server}auth/local/register`, {
@@ -119,6 +120,7 @@ function Signup() {
                             x-model="password_confirm"
                         />
 
+                        {/* Vill lägga till sen: */}
                         {/* <div className="">
             <input className="" type="checkbox"/>
                 <span className="">Accept the
@@ -142,14 +144,11 @@ function Signup() {
             </a>
         </div> */}
 
-                        {/* Error meddelande */}
-                        <h5> {error} </h5>
+                        <h5> {error} </h5> {/* Error meddelande */}
 
                         <button className="">
                             Signup!
                         </button>
-
-
 
                         <div className="">
                             Already have an account?
@@ -157,7 +156,6 @@ function Signup() {
                                 <p>Log in here</p>
                             </a>
                         </div>
-
 
                     </form>
                 </div>

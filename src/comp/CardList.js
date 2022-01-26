@@ -1,3 +1,4 @@
+// Här listas alla helper-cards ut. Paginering syns längst ner
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Card from "./Card";
@@ -7,7 +8,6 @@ function CardList() {
 
     const [helpers, setHelpers] = useState([]);
     const [loadPage, setLoadPage] = useState(4); //(4) default-värde, börjar med 4 st cards
-    const [isHelper, setIsHelper] = useState(false);
 
     useEffect(() => {
         async function fetch() {
@@ -35,10 +35,9 @@ function CardList() {
 
     return ( //här loopas varje card
         <div className="">
-
             {helpers.map((helper) => { //Här mappar jag ut från API/Strapi
-               console.log(helper);
-               return ( // ex email, är det vi skickar på props sen upp i funktionen. {helper.email} är det som hämtas från API  //undersök här !!!
+                console.log(helper);
+                return ( // ex email, är det som skickas på props sen upp i funktionen. {helper.email} är det som hämtas från API
                     <Card key={helper.id}
                         helperId={helper.id}
                         image={helper.profile_image.formats.thumbnail.url}
@@ -55,11 +54,13 @@ function CardList() {
             })
             }
 
+            {/* Här visas paginerings-knapparna */}
             {(helpers.length > loadPage || helpers.length === loadPage) ?
                 <button onClick={loadMore} className='showmore-button'>Load more Helpers!</button>
                 :
                 <button onClick={showLess} className='showmore-button'>Show less Helpers!</button>
-                }
+            }
+            
         </div>
     );
 }

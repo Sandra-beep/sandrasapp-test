@@ -1,3 +1,4 @@
+//Här är alla funktioner för inlogg
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +12,7 @@ function Login() {
     }
 
     const [formValues, setFormValues] = useState(initialValues)     //variabel som tar in de tomma värderna först
-    const [jwt, setJwt] = useState(localStorage.getItem("jwt")) //varibel med state som ändrar token(jwt=javascript web token)
+    const [jwt, setJwt] = useState(localStorage.getItem("jwt"))     //varibel med state som ändrar token(jwt=javascript web token)
     const [error, setError] = useState(" ")
     const navigate = useNavigate()
 
@@ -41,12 +42,12 @@ function Login() {
                 localStorage.setItem("firstname", response.data.user.first_name);
                 localStorage.setItem("userId", response.data.user.id); //userId, benämning i localstorage. data.user.id, hämtning i API
                 localStorage.setItem("email", response.data.user.email);
-                
+
                 const userid = response.data.user.id;
-                const getHelperId = async ()=>{
+                const getHelperId = async () => {
                     const helperinfo = await axios.get(`${server}helpers?userID=${userid}`)
                     console.log(helperinfo)
-                    if(helperinfo.data.length!==0){
+                    if (helperinfo.data.length !== 0) {
 
                         localStorage.setItem("helperId", helperinfo.data[0].id)
                     }
@@ -56,11 +57,11 @@ function Login() {
                 getHelperId();
 
 
-
+                //Kod jag testat runt med: Om man inte har helperid är definerad så settar den helperId
                 // if (response.data.user.helper_id.id !== undefined) {
                 //     localStorage.setItem("helperId", response.data.user.helper_id.id)
                 // }
-                // else { // annars skickas vidare till Home
+                // else { // annars skickas vidare till Home, och laddar om sidan
 
                 //     navigate("/home");
                 //     window.location.reload();
@@ -105,10 +106,10 @@ function Login() {
                         required
                         onChange={handleOnChange} />
 
-                    {/* Error meddelande */}
-                    <h5> {error} </h5>
+                    <h5> {error} </h5> {/* Error meddelande */}
 
                     <button type="submit">Login in</button>
+                    
                 </form>
 
                 <div className="login-links">
