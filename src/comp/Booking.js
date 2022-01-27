@@ -27,6 +27,8 @@ function Booking({ helperId, firstName, lastName, dateTime, price }) {
 
   const token = localStorage.getItem("jwt");
   const [deleteStatus, setDeleteStatus] = useState(false);
+  const [confirmText, setConfirmText] = useState("Confirm");
+
 
   function openDeleteModal(e) {
     setDeleteStatus(true)
@@ -103,7 +105,7 @@ function Booking({ helperId, firstName, lastName, dateTime, price }) {
         <button className="delete-button" onClick={openDeleteModal}>
           Cancel booking
         </button>
-
+        
       </div>
 
       <Modal //En popup fönster som frågar "Ta bort bokning"

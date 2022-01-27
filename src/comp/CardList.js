@@ -22,7 +22,7 @@ function CardList() {
 
     }, [loadPage])
 
-    //utöver de 2 som är default så laddas det 2 till.
+    //utöver det som är default så laddas det 2 till.
     function loadMore() {
         let dynamicPage = loadPage + 2;
         setLoadPage(dynamicPage);

@@ -8,7 +8,7 @@ import { server } from "./config";
 
 function Card({ helperId, userID, firstName, lastName, description, image, language, dateTime, price }) { //Props som hämtar hem från mappningen
 
-    const customStyles = {
+    const customStyles = { //stil för modul/popup
         content: {
             background: "white",
             height: "auto",
@@ -22,7 +22,7 @@ function Card({ helperId, userID, firstName, lastName, description, image, langu
         }
     };
 
-    const intialValues = {
+    const intialValues = { //börjar med tomma värden
         description: "",
         language: "",
         profile_image: "",
@@ -143,8 +143,9 @@ function Card({ helperId, userID, firstName, lastName, description, image, langu
                 window.location.reload()
             )
     }
-    console.log(userID)
-    console.log(userId);
+    // console.log(userID)
+    // console.log(userId);
+    
     return (
         <>
 
