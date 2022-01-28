@@ -229,15 +229,36 @@ input {
 
 /* ----------------Footer-----------------*/
 
-.footer {
+.footer-wrap {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   margin: 0vw 4vw;
-  text-align: center;
   color: lightgray;
   border-top: 1px solid lightgray;
   border-left: 0px;
   border-right: 0px;
   border-bottom: 0px;
 }
+
+.f-column {
+  width: 25%;
+}
+
+.footer-title {
+  font-weight: bold;
+  color: rgb(182, 182, 182);
+}
+
+.footer-copyright {
+    color: gray;
+    background-color: rgb(224, 243, 250);
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
 /* ----------------BREAKPOINTS-----------------*/
 
@@ -290,4 +311,16 @@ input {
     justify-content: center;
     flex-flow: column wrap;
   }
+
+  .footer-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: wrap row;
+  }
+
+  .f-column {
+    width: 50%;
+  }
+
 }
