@@ -18,7 +18,7 @@ function UserGreeting() {
 
                 (
                     <div className="intro-title">
-                        <h2>Welcome back {firstname} to Web Study Buddy!</h2>
+                        <h3>Welcome back {firstname} to Web Study Buddy!</h3>
                         <p className="intro">
                             Pick a helper and let's get started!
                             <p>Happy studying!</p>

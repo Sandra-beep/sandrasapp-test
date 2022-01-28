@@ -126,9 +126,6 @@ function Card({ helperId, userID, firstName, lastName, description, image, langu
     }
 
 
-
-
-
     async function deleteCard() { //om isHelper && isRegularUser, kan man ta bort en card
         await axios.delete(`${server}helpers/${helperId}`,
 

@@ -18,7 +18,7 @@ const Navbar = () => {
             {userId ?
                 (
                     <nav className="navbar">
-                        <h1>Web Studdy Buddy</h1>
+                        <h1> Web Studdy Buddy </h1>
                         <div className="links">
                             <Link to="/home">Home</Link>
                             <Link to="/create">Create</Link>

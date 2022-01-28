@@ -1,6 +1,7 @@
 // Startsidan där jag har hämtat hem Usergreeting och cardlist komp
 import CardList from './CardList';
 import UserGreeting from './UserGreeting';
+import SearchPage from './SearchPage';
 
 function Home() {
 
@@ -8,9 +9,10 @@ function Home() {
 
         <div className="main">
 
+            {/* <SearchPage /> */}
             <UserGreeting />
 
-            <h2>All Helpers</h2>
+            <h3>All Helpers</h3>
             <hr />
 
             <CardList />
